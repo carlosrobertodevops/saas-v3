@@ -4,6 +4,12 @@
     "signUp": "Crear cuenta",
     "dashboard": "Panel"
   },
+  "LocaleSwitch": {
+    "es": "Español",
+    "en": "Inglés",
+    "pt": "Portugués",
+    "label": "Idioma"
+  },
   "Home": {
     "title": "SAAS-AI",
     "keyFeatures": "Características chave",

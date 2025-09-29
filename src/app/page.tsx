@@ -2,6 +2,7 @@
 
 // Tradução
 import { useTranslations } from 'next-intl';
+import {getLocale, getMessages} from 'next-intl/server';
 
 import Link from "next/link";
 
@@ -13,6 +14,8 @@ import { Search, Tag, ClipboardList } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { FaCog, FaChartBar, FaLock } from "react-icons/fa";
 import { IoCheckmarkCircle, IoClose } from "react-icons/io5";
+
+import LocaleSwitcher from '@/src/components/LocaleSwitcher';
 
 export default function Home() {
   // Tradução
@@ -41,6 +44,7 @@ function Navbar() {
     <div className="flex m-5 max-sm:mt-9 mx-8 items-center justify-between max-sm:flex-col  ">
       <AppLogo />
       <Buttons />
+      <LocaleSwitcher />
     </div>
   );
 }
@@ -67,6 +71,7 @@ function AppLogo() {
 function Buttons() {
   // Tradução
   const t = useTranslations('Navbar');
+  const l = useTranslations('Common');
   // Clerk Auth
   const { userId, isLoaded } = useAuth();
 
@@ -74,7 +79,7 @@ function Buttons() {
     // Optionally render a loading state
     return (
       <div className="flex gap-2 max-sm:flex-col max-sm:w-full max-sm:mt-8">
-        <button className="p-2 bg-gray-200 rounded-md">Loading...</button>
+        <button className="p-2 bg-gray-200 rounded-md"> {l('loading')}</button>
       </div>
     );
   }

@@ -4,6 +4,12 @@
     "signUp": "Criar conta",
     "dashboard": "Painel"
   },
+  "LocaleSwitch": {
+    "es": "Espanhol",
+    "en": "Inglês",
+    "pt": "Português",
+    "label": "Idioma"
+  },
   "Home": {
     "title": "SAAS-IA",
     "keyFeatures": "Principais recursos",

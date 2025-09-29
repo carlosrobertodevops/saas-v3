@@ -157,27 +157,27 @@ export default function AppContextProvider({
   const [mainMenuItems, setMainMenuItems] = useState<MenuItem[]>([
     {
       icon: LuLayoutDashboard,
-      label: t('dashboard')?? "Dashboard",
+      label: t('dashboard'),
       isSelected: true,
     },
     {
       icon: MdHistory,
-      label: t('history')?? "History",
+      label: t('history'),
       isSelected: false,
     },
     {
       icon: TbTemplate,
-      label: t('templates')?? "Templates",
+      label: t('templates'),
       isSelected: false,
     },
     {
       icon: MdFavorite,
-      label: t('favorites')?? "Favorite Templates",
+      label: t('favorites'),
       isSelected: false,
     },
     {
       icon: MdFavorite,
-      label: t('subscriptions')?? "Subscriptions",
+      label: t('subscriptions'),
       isSelected: false,
     },
   ]);
@@ -185,11 +185,11 @@ export default function AppContextProvider({
   const [secondMenuItems, setSecondMenuItems] = useState<MenuItem[]>([
     {
       icon: MdDarkMode,
-      label: t('darkMode')?? "Dark Mode",
+      label: t('darkMode'),
     },
     {
       icon: MdLogout,
-      label: t('logout')?? "Log Out",
+      label: t('logout'),
     },
   ]);
 

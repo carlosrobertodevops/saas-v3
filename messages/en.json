@@ -4,6 +4,12 @@
     "signUp": "Sign Up",
     "dashboard": "Dashboard"
   },
+  "LocaleSwitcher": {
+    "es": "Spanish",
+    "en": "English",
+    "pt": "Portuguese",
+    "label": "Language"
+  },
   "Home": {
     "title": "SAAS-AI",
     "keyFeatures": "Key Features",
