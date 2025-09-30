@@ -5,9 +5,9 @@
     "dashboard": "Dashboard"
   },
   "LocaleSwitcher": {
-    "es": "Spanish",
-    "en": "English",
-    "pt": "Portuguese",
+    "es": "🇪🇸 Spanish",
+    "en": "🇺🇸 English",
+    "pt": "🇧🇷 Portuguese",
     "label": "Language"
   },
   "Home": {

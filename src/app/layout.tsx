@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
@@ -9,13 +9,13 @@ import AppContextProvider from "./AppContext";
 import { ClerkProvider } from "@clerk/nextjs";
 
 // Tradução
-import Link from 'next/link';
-import {useTranslations} from 'next-intl';
-import {ReactNode} from 'react';
-import LocaleSwitcher from '@/src/components/LocaleSwitcher';
-import NavLink from '@/src/components/NavLink';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import NavLink from "@/src/components/NavLink";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 // Metadata
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ type Props = {
 };
 
 // Root Layout
-export default async function RootLayout({children}: Props){
+export default async function RootLayout({ children }: Props) {
   // Locate
   const locale = await getLocale();
   // Message

@@ -5,9 +5,9 @@
     "dashboard": "Painel"
   },
   "LocaleSwitcher": {
-    "es": "Espanhol",
-    "en": "Inglês",
-    "pt": "Português",
+    "es": "🇪🇸 Espanhol",
+    "en": "🇺🇸 Inglês",
+    "pt": "🇧🇷 Português",
     "label": "Idioma"
   },
   "Home": {

@@ -1,3 +1,9 @@
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale } from "next-intl/server";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+
 import React, { useEffect, useState } from "react";
 import { MdOutlineSummarize } from "react-icons/md";
 import { CgFileDocument } from "react-icons/cg";
@@ -29,7 +35,7 @@ const DashStats = () => {
     // Calculate total words
     const totalWords = allHistoryData.reduce(
       (sum, singleHistory) => sum + singleHistory.totalWords,
-      0
+      0,
     );
 
     // Calculate total documents generated
@@ -91,7 +97,7 @@ const DashStats = () => {
         }
 
         return singleItem;
-      })
+      }),
     );
   }, [allHistoryData]);
 

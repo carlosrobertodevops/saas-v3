@@ -1,4 +1,11 @@
 "use client";
+
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale } from "next-intl/server";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+
 import React from "react";
 import MainHeader from "../MainHeader";
 import { useAppContext } from "@/src/app/AppContext";

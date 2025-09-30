@@ -130,7 +130,6 @@ const MainHeader = () => {
           />
         )}
       </div>
-      <LocaleSwitcher />
     </div>
   );
 };
@@ -185,6 +184,10 @@ function ProfileUser() {
           </div>
         )}
       </div>
+      {/* Seletor de Ligua*/}
+      <>
+        <LocaleSwitcher />
+      </>
     </div>
   );
 }
