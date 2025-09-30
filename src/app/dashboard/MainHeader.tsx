@@ -1,4 +1,12 @@
 "use client";
+
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale } from "next-intl/server";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+
+// MainHeader
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
@@ -11,6 +19,8 @@ import { SingleTemplate } from "@/src/types/AppType";
 import { GiRoundStar } from "react-icons/gi";
 
 import { UserButton, useAuth, useUser } from "@clerk/nextjs";
+
+// const locale = getLocale();
 
 const MainHeader = () => {
   const {
@@ -26,6 +36,7 @@ const MainHeader = () => {
     contentGeneratedObject: { contentGenerated },
   } = useAppContext();
 
+  // const locale = getLocale();
   //Get the menu element the user clicked on
   const findSelectedMenuItems = mainMenuItems.find((item) => item.isSelected);
 
@@ -85,7 +96,7 @@ const MainHeader = () => {
           onClick={() => {
             setOpenContentGeneratorForm(!openContentGeneratorForm);
           }}
-          className={` text-white text-[12px] 
+          className={` text-white text-[12px]
         gap-1 py-[6px] px-3 mr-2 bg-gradient-to-tr from-purple-600
          to-purple-700 rounded-md flex items-center justify-center ${
            disableGenerateBtn && "opacity-40"
@@ -119,6 +130,7 @@ const MainHeader = () => {
           />
         )}
       </div>
+      <LocaleSwitcher />
     </div>
   );
 };
@@ -188,7 +200,7 @@ function SearchComponent() {
   const [showLiveResults, setShowLiveResults] = useState(false);
 
   const filteredResults = allTemplates.filter((singleTemplate) =>
-    singleTemplate.title.toLowerCase().includes(search.toLowerCase())
+    singleTemplate.title.toLowerCase().includes(search.toLowerCase()),
   );
 
   function updateTheSearchInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -238,7 +250,7 @@ function SearchComponent() {
           placeholder="Search a template..."
           className={` ${
             isDarkMode ? "bg-slate-600" : "bg-slate-50"
-          }  font-light text-slate-400 placeholder:text-slate-400 focus:outline-none px-1 text-[12px]  
+          }  font-light text-slate-400 placeholder:text-slate-400 focus:outline-none px-1 text-[12px]
     w-full`}
         />
       </div>
@@ -252,7 +264,7 @@ function SearchComponent() {
     if (filteredResults.length === 0) {
       return (
         <div
-          className={`  w-[340px] z-[60] p-3 absolute top-14 rounded-md 
+          className={`  w-[340px] z-[60] p-3 absolute top-14 rounded-md
     shadow-md flex flex-col gap-5 text-slate-400 text-[12px] ${
       isDarkMode ? "bg-slate-600" : "bg-white"
     }`}
@@ -266,7 +278,7 @@ function SearchComponent() {
       <div
         className={`${
           isDarkMode ? "bg-slate-600" : "bg-white"
-        } w-[340px] ${dynamicHeight} z-[60] p-3 absolute top-14 rounded-md 
+        } w-[340px] ${dynamicHeight} z-[60] p-3 absolute top-14 rounded-md
       shadow-md flex flex-col gap-3`}
       >
         <div className="h-[97%] overflow-y-auto">
@@ -312,7 +324,7 @@ function SearchComponent() {
         if (singleTemplate.isForPro) {
           return (
             <GiRoundStar
-              className="text-purple-600   p-[2px] flex items-center justify-center rounded-full 
+              className="text-purple-600   p-[2px] flex items-center justify-center rounded-full
      absolute right-[-25px] top-[5px] text-[13px]  "
             />
           );
@@ -327,7 +339,7 @@ function SearchComponent() {
         prevItems.map((singleItem) => ({
           ...singleItem,
           isSelected: singleItem.label === "Subscriptions" ? true : false,
-        }))
+        })),
       );
     }
 
@@ -361,8 +373,8 @@ function SearchComponent() {
           setShowLiveResults(false);
           setSearch("");
         }}
-        className={`p-2 flex items-center justify-between gap-4 
-      hover:border rounded-md hover:bg-purple-50 border-purple-500 ${adjustOpacity()} 
+        className={`p-2 flex items-center justify-between gap-4
+      hover:border rounded-md hover:bg-purple-50 border-purple-500 ${adjustOpacity()}
       select-auto cursor-pointer  `}
       >
         {/* Icon and name - take full space on the left */}

@@ -1,5 +1,12 @@
 "use client";
 
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+
+// Dashboard page.tsx
 import { useAppContext } from "../AppContext";
 import StatsDropDown from "../DropDowns/StatsDropDown";
 import ContentGeneratorForm from "./ContentGenerator/ContentGenerator";
@@ -28,7 +35,7 @@ export default function Page() {
   };
 
   const findComponentKey = mainMenuItems.findIndex(
-    (menuItem) => menuItem.isSelected
+    (menuItem) => menuItem.isSelected,
   );
 
   const selectedComponent = componentMap[findComponentKey];
