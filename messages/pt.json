@@ -4,7 +4,7 @@
     "signUp": "Criar conta",
     "dashboard": "Painel"
   },
-  "LocaleSwitch": {
+  "LocaleSwitcher": {
     "es": "Espanhol",
     "en": "Inglês",
     "pt": "Português",
