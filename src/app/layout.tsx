@@ -4,12 +4,18 @@ import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import AppContextProvider from "./AppContext";
+
+// Clerk Auth
 import { ClerkProvider } from "@clerk/nextjs";
 
 // Tradução
+import Link from 'next/link';
+import {useTranslations} from 'next-intl';
+import {ReactNode} from 'react';
+import LocaleSwitcher from '@/src/components/LocaleSwitcher';
+import NavLink from '@/src/components/NavLink';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-import {ReactNode} from 'react';
 
 // Metadata
 export const metadata: Metadata = {

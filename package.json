@@ -1,6 +1,6 @@
 {
-  "name": "this-project",
-  "version": "0.1.0",
+  "name": "saas-v3",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -27,7 +27,6 @@
     "lucide-react": "^0.441.0",
     "mongoose": "^8.7.0",
     "next": "^15.5.4",
-    "next-i18next": "^15.4.2",
     "next-intl": "latest",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

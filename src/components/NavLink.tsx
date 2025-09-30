@@ -15,8 +15,8 @@ export default function NavLink({href, ...rest}: ComponentProps<typeof Link>) {
       className={clsx(
         'border-b-2 border-transparent py-2 font-semibold transition-colors',
         isActive
-          ? 'border-b-slate-900 text-slate-900'
-          : 'text-slate-600 hover:border-b-slate-300 hover:text-slate-900'
+          ? 'border-slate-100 text-slate-100'
+          : 'text-slate-100 hover:border-b-slate-300' // hover:text-slate-900'
       )}
       href={href}
       {...rest}

@@ -8,12 +8,14 @@ import {Locale} from '@/src/config';
 import {setUserLocale} from '@/src/services/locale';
 
 type Props = {
+  className: string,
   defaultValue: string;
   items: Array<{value: string; label: string}>;
   label: string;
 };
 
 export default function LocaleSwitcherSelect({
+  className,
   defaultValue,
   items,
   label
@@ -28,12 +30,12 @@ export default function LocaleSwitcherSelect({
   }
 
   return (
-    <div className="relative">
+    <div className={className}>
       <Select.Root defaultValue={defaultValue} onValueChange={onChange}>
         <Select.Trigger
           aria-label={label}
           className={clsx(
-            'rounded-full p-2 transition-colors hover:bg-slate-100 group',
+            'font-sans rounded-full p-2 transition-colors hover:bg-slate-100 group',
             'bg-slate-200',
             isPending && 'pointer-events-none opacity-60'
           )}

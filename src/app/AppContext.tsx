@@ -1,4 +1,7 @@
 "use client";
+
+// Clerk Auth
+import { useUser } from "@clerk/nextjs";
 // Treaduções
 import { useTranslations } from 'next-intl';
 
@@ -40,7 +43,6 @@ import { SingleTemplateExtended } from "./dashboard/Hisotry/AllHistory";
 import { newHistoryData } from "@/src/LocalData/mainData";
 
 import { templatesFilteringItemsArray } from "@/src/LocalData/templateFilteringItems";
-import { useUser } from "@clerk/nextjs";
 
 // Define the default state for the context.
 

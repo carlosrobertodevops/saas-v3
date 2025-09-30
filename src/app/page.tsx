@@ -1,21 +1,23 @@
 "use client";
 
+// Clerk
+import { useAuth } from "@clerk/nextjs";
+
 // Tradução
-import { useTranslations } from 'next-intl';
-import {getLocale, getMessages} from 'next-intl/server';
-
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
+import LocaleSwitcher from '@/src/components/LocaleSwitcher';
+import {ReactNode} from 'react';
+import NavLink from '@/src/components/NavLink';
 
+// Tela Home
 import Image from "next/image";
 import { FaPencilAlt } from "react-icons/fa";
 import { AiFillRobot } from "react-icons/ai";
-
 import { Search, Tag, ClipboardList } from "lucide-react";
-import { useAuth } from "@clerk/nextjs";
 import { FaCog, FaChartBar, FaLock } from "react-icons/fa";
 import { IoCheckmarkCircle, IoClose } from "react-icons/io5";
-
-import LocaleSwitcher from '@/src/components/LocaleSwitcher';
 
 export default function Home() {
   // Tradução
