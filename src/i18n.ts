@@ -1,4 +1,5 @@
-import {getRequestConfig} from 'next-intl/server';
+// import { getRequestConfig } from 'next-intl/server';
+import {getRequestConfig} from './i18n/request';
 import {getUserLocale} from './services/locale';
 
 export default getRequestConfig(async () => {
