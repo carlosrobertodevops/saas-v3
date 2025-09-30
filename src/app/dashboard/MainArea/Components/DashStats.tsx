@@ -19,6 +19,7 @@ const DashStats = () => {
     statsDropDownItemsObject: { statsData, setStatsData },
     allHistoryDataObject: { allHistoryData },
   } = useAppContext();
+
   const {
     isDarkModeObject: { isDarkMode, setIsDarkMode },
     windowWidthObject: { windowWidth, setWindowWidth },

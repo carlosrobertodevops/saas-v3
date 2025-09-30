@@ -1,5 +1,9 @@
 "use client";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
+// SideBar
 import React, { useEffect, useRef, useState } from "react";
 import Logo from "./Components/Logo";
 import MainSection from "./Components/MainSection";

@@ -3,7 +3,7 @@
 // Clerk Auth
 import { useUser } from "@clerk/nextjs";
 // Treaduções
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 
 import React, {
   createContext,
@@ -14,7 +14,11 @@ import React, {
   ReactNode,
 } from "react";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { MdHistory, MdSubscriptions } from "react-icons/md"; // Added Subscription icon
+import {
+  MdHistory,
+  MdOutlineViewCarousel,
+  MdSubscriptions,
+} from "react-icons/md"; // Added Subscription icon
 import { TbTemplate } from "react-icons/tb";
 import {
   DaysDropDownItem,
@@ -45,7 +49,6 @@ import { newHistoryData } from "@/src/LocalData/mainData";
 import { templatesFilteringItemsArray } from "@/src/LocalData/templateFilteringItems";
 
 // Define the default state for the context.
-
 const defaultState = {
   fakeUser: {
     isPro: false,
@@ -59,6 +62,7 @@ const defaultState = {
     openConfirmationWindow: false,
     setOpenConfirmationWindow: () => {},
   },
+
   mainMenuItemsObject: {
     mainMenuItems: [],
     setMainMenuItems: () => {},
@@ -154,32 +158,32 @@ export default function AppContextProvider({
   children,
 }: {
   children: React.ReactNode;
-  }) {
-  const t = useTranslations('sidebar');
+}) {
+  const t = useTranslations("sidebar");
   const [mainMenuItems, setMainMenuItems] = useState<MenuItem[]>([
     {
       icon: LuLayoutDashboard,
-      label: t('dashboard'),
+      label: t("dashboard"),
       isSelected: true,
     },
     {
       icon: MdHistory,
-      label: t('history'),
+      label: t("history"),
       isSelected: false,
     },
     {
       icon: TbTemplate,
-      label: t('templates'),
+      label: t("templates"),
       isSelected: false,
     },
     {
       icon: MdFavorite,
-      label: t('favorites'),
+      label: t("favorites"),
       isSelected: false,
     },
     {
-      icon: MdFavorite,
-      label: t('subscriptions'),
+      icon: MdOutlineViewCarousel,
+      label: t("subscriptions"),
       isSelected: false,
     },
   ]);
@@ -187,11 +191,11 @@ export default function AppContextProvider({
   const [secondMenuItems, setSecondMenuItems] = useState<MenuItem[]>([
     {
       icon: MdDarkMode,
-      label: t('darkMode'),
+      label: t("darkMode"),
     },
     {
       icon: MdLogout,
-      label: t('logout'),
+      label: t("logout"),
     },
   ]);
 
@@ -318,6 +322,7 @@ export default function AppContextProvider({
     }
   }, [mainMenuItems]);
 
+  // Salvando as configura localmente
   useEffect(() => {
     // Load the value from localStorage when the component mounts (client-side only)
     const savedSideBarHiddenValue = localStorage.getItem("isSideBarHidden");
@@ -340,7 +345,7 @@ export default function AppContextProvider({
             `/api/histories?clerkUserId=${user.id}`,
             {
               method: "GET",
-            }
+            },
           );
 
           const historyData = await response.json();

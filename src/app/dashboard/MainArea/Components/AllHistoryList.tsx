@@ -1,5 +1,10 @@
 "use client";
 import React from "react";
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 
 import { LuHistory } from "react-icons/lu"; // Example icons, replace with actual icons if needed
 import { MdDelete } from "react-icons/md";
@@ -14,6 +19,7 @@ import SingleHistoryItem, {
 import { HistoryData } from "@/src/types/AppType";
 import { convertFromTextToReactNode } from "../../ContentGenerator/LeftSection/LeftSection";
 import toast from "react-hot-toast";
+
 const AllHistoryList = () => {
   const {
     isDarkModeObject: { isDarkMode },
@@ -22,9 +28,11 @@ const AllHistoryList = () => {
     mainMenuItemsObject: { setMainMenuItems },
   } = useAppContext();
 
+  const t = useTranslations("sidebar");
+
   const listHeaderItems = [
     {
-      title: "Template",
+      title: t("templates"),
       className: "text-[13px] text-slate-500 font-semibold",
     },
     {
@@ -50,11 +58,11 @@ const AllHistoryList = () => {
   if (windowWidth <= 634) {
     updateListHeaderItems = updateListHeaderItems.filter(
       (header) =>
-        header.title !== "Total Words" && header.title !== "Created At"
+        header.title !== "Total Words" && header.title !== "Created At",
     );
   } else if (windowWidth <= 1215) {
     updateListHeaderItems = updateListHeaderItems.filter(
-      (header) => header.title !== "Created At"
+      (header) => header.title !== "Created At",
     );
   }
 
@@ -83,7 +91,7 @@ const AllHistoryList = () => {
         <div className="  text-slate-700 flex gap-3 items-center">
           <span className="text-[17px] font-bold">Recent History</span>
           <div
-            className="bg-purple-200 w-[24px] h-[24px] p-1 rounded-full 
+            className="bg-purple-200 w-[24px] h-[24px] p-1 rounded-full
           text-[12px] text-white flex items-center justify-center"
           >
             <span className="text-purple-600">{allHistoryData.length}</span>
@@ -98,7 +106,7 @@ const AllHistoryList = () => {
                   return { ...singleItem, isSelected: true };
                 }
                 return { ...singleItem, isSelected: false };
-              })
+              }),
             );
           }}
           className="text-[13px] text-purple-600 cursor-pointer hover:text-purple-800 items-center"
@@ -116,8 +124,8 @@ const AllHistoryList = () => {
       windowWidth < 634
         ? "grid-cols-3"
         : windowWidth < 1215
-        ? "grid-cols-4"
-        : "grid-cols-5"
+          ? "grid-cols-4"
+          : "grid-cols-5"
     }
   `}
       >
@@ -156,8 +164,8 @@ function SingleItem({ singleHistory }: { singleHistory: HistoryData }) {
           windowWidth < 634
             ? "grid-cols-3"
             : windowWidth < 1215
-            ? "grid-cols-4"
-            : "grid-cols-5"
+              ? "grid-cols-4"
+              : "grid-cols-5"
         }`}
       >
         {/* Template */}
@@ -165,7 +173,7 @@ function SingleItem({ singleHistory }: { singleHistory: HistoryData }) {
           {/* Icon */}
           {windowWidth >= 634 && (
             <div
-              className="  bg-purple-200 rounded-md p-[5px] flex 
+              className="  bg-purple-200 rounded-md p-[5px] flex
                items-center justify-center"
             >
               {convertFromTextToReactNode(singleHistory.template)}
@@ -218,7 +226,7 @@ function SingleItem({ singleHistory }: { singleHistory: HistoryData }) {
                     toast.error("Failed to copy this history content");
                   });
               }}
-              className=" rounded-[4px] p-1  flex items-center justify-center 
+              className=" rounded-[4px] p-1  flex items-center justify-center
               cursor-pointer bg-purple-200 hover:bg-purple-300 transition-all"
             >
               <FaRegCopy className="text-purple-600 text-[11px]" />
@@ -230,7 +238,7 @@ function SingleItem({ singleHistory }: { singleHistory: HistoryData }) {
                 setSelectedHistoryEntry(singleHistory);
                 setOpenConfirmationWindow(true);
               }}
-              className=" rounded-[4px] p-1  flex items-center justify-center 
+              className=" rounded-[4px] p-1  flex items-center justify-center
               cursor-pointer bg-slate-200 hover:bg-slate-300 transition-all"
             >
               <MdDelete className="text-slate-600 text-[11px]" />

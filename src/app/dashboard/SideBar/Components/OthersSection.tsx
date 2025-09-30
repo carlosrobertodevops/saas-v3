@@ -1,11 +1,18 @@
 "use client";
+// Tradução
+import { useTranslations } from "next-intl";
+
 import { useAppContext } from "@/src/app/AppContext";
 import { MenuItem } from "@/src/types/AppType";
 import React, { useState } from "react";
 import { MdDarkMode, MdSettings, MdLogout } from "react-icons/md"; // Icons for Dark Mode, Settings, Log Out
 import { MdLightMode } from "react-icons/md";
 import { useAuth } from "@clerk/nextjs";
+
+// Outras sessões
 function OthersSection() {
+  const t = useTranslations("sidebar");
+
   const {
     secondMenuItemsObject: { secondMenuItems, setSecondMenuItems },
     isDarkModeObject: { isDarkMode, setIsDarkMode },
@@ -15,7 +22,7 @@ function OthersSection() {
   const { signOut } = useAuth();
 
   function updateDarkModeIcon(
-    isDarkModeOn: boolean
+    isDarkModeOn: boolean,
   ): React.ComponentType<React.SVGProps<SVGSVGElement>> {
     if (isDarkModeOn) {
       return MdDarkMode;
@@ -48,7 +55,7 @@ function OthersSection() {
             className="flex items-center justify-between gap-2 text-slate-400"
           >
             <div className="flex gap-2 items-center py-[6px] px-2 cursor-pointer select-none">
-              {item.label === "Dark Mode"
+              {item.label === t("darkMode")
                 ? React.createElement(updateDarkModeIcon(isDarkMode))
                 : React.createElement(item.icon)}
               <span
@@ -59,7 +66,7 @@ function OthersSection() {
               </span>
             </div>
 
-            {item.label === "Dark Mode" && <DarkModeToggle />}
+            {item.label === t("darkMode") && <DarkModeToggle />}
           </li>
         ))}
       </ul>
@@ -99,7 +106,7 @@ function OthersSection() {
         <div
           className={`w-[10px] absolute h-[10px] top-[3px]  ${
             !isDarkMode ? "bg-white" : "bg-purple-600"
-          } transform  
+          } transform
           rounded-full transition-all ${
             isDarkMode ? "right-[3px]" : "left-[3px]"
           }`}

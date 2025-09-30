@@ -1,4 +1,9 @@
 "use client";
+
+// Traduções
+import { useTranslations } from "next-intl";
+
+// SideBar
 import React, { useState } from "react";
 
 // Importing the useAppContext hook from the AppContext file
@@ -19,7 +24,7 @@ function MainSection() {
       mainMenuItems.map((item, i) => ({
         ...item,
         isSelected: i === index,
-      }))
+      })),
     );
   };
 

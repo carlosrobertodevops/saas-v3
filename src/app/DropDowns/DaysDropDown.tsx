@@ -1,5 +1,8 @@
 "use client";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
 import {
   Dispatch,
   ReactNode,
@@ -13,7 +16,7 @@ import { IoDocumentsOutline } from "react-icons/io5";
 import { IoMdTime } from "react-icons/io";
 import { BiChart } from "react-icons/bi";
 import { useAppContext } from "../AppContext";
-import { DaysDropDownItem } from "../types/AppType";
+import { DaysDropDownItem } from "@/src/types/AppType";
 import useOutsideClick from "../Hooks/useClickOutside";
 
 //Defining the type of each element in the drop down
@@ -52,7 +55,7 @@ function DaysDropDown({
   useOutsideClick(
     dropDownRef,
     () => setOpenDaysDropDown(false),
-    openDaysDropDown
+    openDaysDropDown,
   );
 
   //Jsx
@@ -62,8 +65,8 @@ function DaysDropDown({
       className={`  ${
         isDarkMode ? "bg-slate-700" : "bg-white border border-slate-50 "
       }    absolute p-3 top-7 right-1
-          z-[90]   w-[180px]   
-       select-none shadow-md rounded-lg flex 
+          z-[90]   w-[180px]
+       select-none shadow-md rounded-lg flex
       flex-col gap-2`}
     >
       {daysDropDown.map((item, index) => (
