@@ -86,6 +86,7 @@
     "cancel": "Cancelar",
     "delete": "Eliminar",
     "deleting": "Eliminando...",
+    "no_template_found": "no se encontró ninguna plantilla...",
     "goBackToDashboard": "Volver al panel",
     "paymentSuccessful": "Pago realizado",
     "addKeywordsPlaceholder": "Agrega palabras clave aquí...",

@@ -39,6 +39,7 @@ export default function Home() {
   );
 }
 
+// Navbar
 function Navbar() {
   return (
     <div className="flex m-5 max-sm:mt-9 mx-8 items-center justify-between max-sm:flex-col  ">
@@ -48,6 +49,7 @@ function Navbar() {
   );
 }
 
+// Logo
 function AppLogo() {
   return (
     <div className="flex items-center justify-between space-x-2 mt-1">
@@ -67,6 +69,7 @@ function AppLogo() {
   );
 }
 
+// Botões
 function Buttons() {
   // Tradução
   const t = useTranslations("Navbar");
@@ -121,6 +124,7 @@ function Buttons() {
   );
 }
 
+// Botão de CTA
 function CTASection() {
   // Tradução
   const t = useTranslations("Home");

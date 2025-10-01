@@ -86,6 +86,7 @@
     "cancel": "Cancelar",
     "delete": "Excluir",
     "deleting": "Excluindo...",
+    "no_template_found": "nenhum modelo encontrado...",
     "goBackToDashboard": "Voltar para o painel",
     "paymentSuccessful": "Pagamento concluído",
     "addKeywordsPlaceholder": "Adicione palavras‑chave aqui...",

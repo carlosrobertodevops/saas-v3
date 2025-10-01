@@ -184,7 +184,7 @@ function ProfileUser() {
           </div>
         )}
       </div>
-      {/* Seletor de Ligua*/}
+      {/* Seletor do i18n */}
       <>
         <LocaleSwitcher />
       </>
@@ -263,6 +263,7 @@ function SearchComponent() {
 
   function LiveResults() {
     const dynamicHeight = filteredResults.length === 14 ? "h-[250px]" : "";
+    const t = useTranslations("Common");
 
     if (filteredResults.length === 0) {
       return (
@@ -272,7 +273,7 @@ function SearchComponent() {
       isDarkMode ? "bg-slate-600" : "bg-white"
     }`}
         >
-          no template found...
+          t(“no_template_found”)
         </div>
       );
     }

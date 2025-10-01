@@ -5,13 +5,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: runner # garante que o Coolify use a imagem de runtime
+      args:
+        NODE_VERSION: 22-alpine
+        PNPM_VERSION: 10.17.1
     restart: unless-stopped
     environment:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
 
-      # Clerk (definir no Coolify/Secrets)
+      # Clerk (definir em Secrets no Coolify)
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:?set in Coolify}
       CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:?set in Coolify}
       NEXT_PUBLIC_CLERK_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_SIGN_IN_URL:-/sign-in}
@@ -19,23 +24,29 @@ services:
       NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL:-/dashboard}
       NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL:-/}
 
-      # DB (usa o Mongo do compose por padrão; ajuste para Atlas se preferir)
+      # DB (ajuste para Atlas se preferir)
       MONGODB_URL: ${MONGODB_URL:-mongodb://root:root@mongo:27017/ui-shelf?authSource=admin}
 
-      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
+      # (opcional) evitar OOM em builds grandes
+      # NODE_OPTIONS: --max-old-space-size=1024
 
     depends_on:
       mongo:
         condition: service_healthy
-    ports:
-      - "3000:3000"
+
+    # No Coolify, normalmente NÃO é preciso mapear portas.
+    # Ele publica automaticamente a porta interna do serviço.
+    # Se quiser expor manualmente, descomente:
+    # ports:
+    #   - "3000:3000"
+
     healthcheck:
       test:
         [
           "CMD",
           "node",
           "-e",
-          "require('http').get('http://localhost:3000', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+          "require('http').get('http://localhost:3000', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))",
         ]
       interval: 15s
       timeout: 5s
@@ -57,7 +68,7 @@ services:
           "--quiet",
           "mongodb://$${MONGO_INITDB_ROOT_USERNAME}:$${MONGO_INITDB_ROOT_PASSWORD}@localhost:27017/admin?authSource=admin",
           "--eval",
-          "db.runCommand({ ping: 1 })"
+          "db.runCommand({ ping: 1 })",
         ]
       interval: 10s
       timeout: 5s

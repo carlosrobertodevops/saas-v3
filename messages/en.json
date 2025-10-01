@@ -86,6 +86,7 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "deleting": "Deleting...",
+    "no_template_found": "no template found...",
     "goBackToDashboard": "Go Back To Dashboard",
     "paymentSuccessful": "Payment Successful",
     "addKeywordsPlaceholder": "Add keywords here...",

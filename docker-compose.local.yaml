@@ -2,27 +2,30 @@ name: generator-saas-local
 
 services:
   app:
-    image: node:22-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+      args:
+        NODE_VERSION: 22-alpine
+        PNPM_VERSION: 10.17.1
     working_dir: /app
     volumes:
-      - ./:/app
-      - /app/node_modules
-      - next-cache:/app/.next
-    command: sh -c "npm ci && npm run dev"
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env.local
+      - ./:/app # seu código
+      - /app/node_modules # volume anônimo p/ não poluir o host
+      - next-cache:/app/.next # cache do Next
+      - pnpm-store:/root/.local/share/pnpm/store # cache do pnpm
     environment:
       NODE_ENV: development
       NEXT_TELEMETRY_DISABLED: "1"
-      WATCHPACK_POLLING: "true"
+      WATCHPACK_POLLING: "true" # útil no Docker Desktop/WSL
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+    command: pnpm dev # (pode omitir; já é o CMD do stage dev)
+    ports:
+      - "3000:3000"
     depends_on:
       - mongo
-      # mongo:
-      #   condition: service_healthy
     restart: unless-stopped
 
   mongo:
@@ -35,18 +38,8 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    # Healthcheck mais tolerante + autenticação explícita
-    # healthcheck:
-    #   test:
-    #     [
-    #       "CMD-SHELL",
-    #       "mongosh --norc --quiet 'mongodb://root:root@localhost:27017/admin?authSource=admin' --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q 1"
-    #     ]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 30
-    #   start_period: 40s
 
 volumes:
   mongo-data:
   next-cache:
+  pnpm-store:
