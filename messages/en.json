@@ -10,6 +10,14 @@
     "pt": "🇧🇷 Portuguese",
     "label": "Language"
   },
+  "Plans": {
+    "pro": "Pro Plan",
+    "free": "Free Plan",
+    "business": "Business Plan",
+    "enterprise": "Enterprise Plan",
+    "ultimate": "Ultimate Plan",
+    "upgrade_to_pro": "Upgrade to Pro"
+  },
   "Home": {
     "title": "SAAS-AI",
     "keyFeatures": "Key Features",
@@ -175,6 +183,7 @@
       "output": "Output",
       "hint": "Below is the generated content. Feel free to edit or refine it further.",
       "totalWords": "Total Words"
-    }
+    },
+    "words_generated": "Words Generated"
   }
 }

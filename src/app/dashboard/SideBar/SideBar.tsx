@@ -77,10 +77,8 @@ function SideBar() {
         <Logo />
         {/* Main Section */}
         <MainSection />
-
         {/* Tools Section */}
         <OthersSection />
-
         {/* Remaining words card */}
         {!isSideBarHidden && <RemainingWords />}
       </div>

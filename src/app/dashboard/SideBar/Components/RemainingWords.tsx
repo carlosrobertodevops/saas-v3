@@ -1,23 +1,32 @@
 "use client";
+
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getLocale } from "next-intl/server";
+
 import { useAppContext } from "@/src/app/AppContext";
 import React, { useEffect, useState } from "react";
 import { countWords } from "../../Hisotry/Components/SingleHistoryItem";
 
 function RemainingWords() {
+  const t = useTranslations("Plans");
+  const t1 = useTranslations("Home");
+
   const {
     mainMenuItemsObject: { setMainMenuItems },
-
     contentGeneratedObject: { contentGenerated },
     fakeUser,
     setFakeUser,
   } = useAppContext();
 
-  const challengeText = "AI-Generated Content";
+  const challengeText = t1("ai_generated_content");
   const progressText = `${fakeUser.cumulativeWords} / ${
     !fakeUser.isPro ? "1000" : "100,000"
   } words generated`;
-  const upgradeButtonText = "Upgrade to Pro";
+  const upgradeButtonText = t("upgrade_to_pro");
 
+  // Barra de progresso
   function progressBarCalculation() {
     const divider = !fakeUser.isPro ? 1000 : 100000;
     const results = (fakeUser.cumulativeWords / divider) * 100;
@@ -63,7 +72,7 @@ function RemainingWords() {
               prevArray.map((singleItem) => ({
                 ...singleItem,
                 isSelected: singleItem.label === "Subscriptions" ? true : false,
-              }))
+              })),
             );
           }}
           className="w-full text-[10px] bg-white text-purple-600 py-2 px-4 rounded-md hover:bg-slate-100 transition duration-300"

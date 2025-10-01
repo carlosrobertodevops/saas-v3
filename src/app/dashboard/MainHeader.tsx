@@ -141,6 +141,8 @@ function ProfileUser() {
   const { fakeUser } = useAppContext();
   const imageUrl = user?.imageUrl || "";
 
+  const t = useTranslations("Plans");
+
   const loadingImage = (
     <div className="w-9 h-9 rounded-full mb-[5px] bg-slate-200 "></div>
   );
@@ -153,7 +155,7 @@ function ProfileUser() {
   );
 
   return (
-    <div className="flex gap-3 items-center  ">
+    <div className="flex gap-3 items-center">
       {!user ? (
         loadingImage
       ) : (
@@ -179,7 +181,7 @@ function ProfileUser() {
               {user?.lastName} {user?.firstName}
             </span>
             <p className="text-xs text-slate-400">
-              {fakeUser.isPro ? "Pro Plan" : "Free plan"}
+              {fakeUser.isPro ? t("pro") : t("free")}
             </p>
           </div>
         )}
@@ -205,6 +207,8 @@ function SearchComponent() {
   const filteredResults = allTemplates.filter((singleTemplate) =>
     singleTemplate.title.toLowerCase().includes(search.toLowerCase()),
   );
+
+  const t = useTranslations("Common");
 
   function updateTheSearchInput(e: React.ChangeEvent<HTMLInputElement>) {
     const currentValue = e.target.value;
@@ -250,7 +254,7 @@ function SearchComponent() {
           value={search}
           onChange={updateTheSearchInput}
           type="text"
-          placeholder="Search a template..."
+          placeholder={t("search_a_template")}
           className={` ${
             isDarkMode ? "bg-slate-600" : "bg-slate-50"
           }  font-light text-slate-400 placeholder:text-slate-400 focus:outline-none px-1 text-[12px]
@@ -312,6 +316,8 @@ function SearchComponent() {
       }
       return sum;
     }, 0);
+
+    const t = useTranslations("ContentGenerator");
 
     function adjustOpacity() {
       if (!fakeUser.isPro) {
@@ -394,7 +400,7 @@ function SearchComponent() {
         </div>
         {/* Total words generated each template - align to the right */}
         <span className="text-[10px] text-right text-slate-400">
-          {sumTotalWords} Words Generated
+          {sumTotalWords} {t("words_generated")}
         </span>
       </div>
     );
