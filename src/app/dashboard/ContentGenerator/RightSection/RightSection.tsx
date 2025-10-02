@@ -5,7 +5,7 @@ import { useAppContext } from "@/src/app/AppContext";
 import "quill/dist/quill.snow.css";
 import "@/src/app/custom-quil.css"; // Add css for snow theme
 import { useContentGeneratorForm } from "../LeftSection/LeftSectionContext";
-import { countWords } from "@/src/app/dashboard/Hisotry/Components/SingleHistoryItem";
+import { countWords } from "@/src/components/SingleHistoryItem";
 
 const formatResponse = (response: string) => {
   // Remove the triple backticks and format the code section for multiple languages

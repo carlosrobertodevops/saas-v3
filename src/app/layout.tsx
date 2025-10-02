@@ -1,3 +1,12 @@
+// Tradução
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import NavLink from "@/src/components/NavLink";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+
 import clsx from "clsx";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -7,15 +16,6 @@ import AppContextProvider from "./AppContext";
 
 // Clerk Auth
 import { ClerkProvider } from "@clerk/nextjs";
-
-// Tradução
-import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { ReactNode } from "react";
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
-import NavLink from "@/src/components/NavLink";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
 
 // Metadata
 export const metadata: Metadata = {
@@ -53,7 +53,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={locale}>
-      <NextIntlClientProvider messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
         <ClerkProvider>
           <AppContextProvider>
             <body className={poppins.variable}>{children}</body>

@@ -82,7 +82,7 @@ function AllHistoryList() {
       >
         {/* First column */}
         <span className="text-[14px] text-slate-400 font-semibold">
-          {t("template")}
+          {t("templates")}
         </span>
         {/* Second column */}
         <span className="text-[14px] text-slate-400 font-semibold">
@@ -93,7 +93,6 @@ function AllHistoryList() {
             {t("created_at")}
           </span>
         )}
-
         <span className="text-[14px] text-slate-400 font-semibold">
           {t("total_words")}
         </span>

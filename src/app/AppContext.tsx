@@ -2,8 +2,14 @@
 
 // Clerk Auth
 import { useUser } from "@clerk/nextjs";
-// Treaduções
+
+// Tradução
+import Link from "next/link";
 import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import NavLink from "@/src/components/NavLink";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 import React, {
   createContext,
@@ -159,6 +165,11 @@ export default function AppContextProvider({
 }: {
   children: React.ReactNode;
 }) {
+  // // Locate
+  // const locale = getLocale();
+  // // Message
+  // const messages = getMessages();
+
   const t = useTranslations("sidebar");
   const [mainMenuItems, setMainMenuItems] = useState<MenuItem[]>([
     {

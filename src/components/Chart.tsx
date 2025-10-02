@@ -28,16 +28,27 @@ import {
   sortAndShortenMonth,
 } from "@/src/LocalData/mainData";
 
-const t = useTranslations();
+// const t = useTranslations("days");
+
+// const data = [
+//   { name: t("days.day_1"), words: 0 },
+//   { name: t("days.day_2"), words: 0 },
+//   { name: t("days.day_3"), words: 10 },
+//   { name: t("days.day_4"), words: 10 },
+//   { name: t("days.day_5"), words: 20 },
+//   { name: t("days.day_6"), words: 34 },
+//   { name: t("days.day_7"), words: 34 },
+// ];
+//
 
 const data = [
-  { name: t("days.day_1"), words: 0 },
-  { name: t("days.day_2"), words: 0 },
-  { name: t("days.day_3"), words: 10 },
-  { name: t("days.day_4"), words: 10 },
-  { name: t("days.day_5"), words: 20 },
-  { name: t("days.day_6"), words: 34 },
-  { name: t("days.day_7"), words: 34 },
+  { name: "Day 1", words: 0 },
+  { name: "Day 2", words: 0 },
+  { name: "Day 3", words: 10 },
+  { name: "Day 4", words: 10 },
+  { name: "Day 5", words: 20 },
+  { name: "Day 6", words: 34 },
+  { name: "Day 7", words: 34 },
 ];
 
 const ChartContainer = () => {

@@ -12,8 +12,7 @@ import { useAppContext } from "@/src/app/AppContext";
 import { HistoryData } from "@/src/types/AppType";
 
 const DashStats = () => {
-  // Traduções de "common"
-  const t = useTranslations("Common");
+  const t = useTranslations("common");
   const {
     statsDropDownItemsObject: { statsData, setStatsData },
     allHistoryDataObject: { allHistoryData },
@@ -46,7 +45,7 @@ const DashStats = () => {
       totalDocGenerated > 0 ? totalWords / totalDocGenerated : 0;
 
     // Tradução de "common"
-    const t = useTranslations("common");
+    // const t1 = useTranslations();
 
     // Calculate total time saved (in minutes)
     const totalTimeSaved = totalWords / averageWPM;
@@ -56,7 +55,7 @@ const DashStats = () => {
 
     // Format the time saved as "xh xxmin" or just "xxmin" if less than 1 hour
     const formattedTimeSaved =
-      hours > 0 ? `${hours} h ${minutes} min` : `${minutes} {t("minutes)}`;
+      hours > 0 ? `${hours} h ${minutes} min` : `${minutes} ${t("minutes")}`;
 
     return {
       totalWords,
@@ -68,7 +67,6 @@ const DashStats = () => {
 
   //Update the stats data array
   useEffect(() => {
-    const t = useTranslations("common");
     const {
       totalWords,
       totalDocGenerated,

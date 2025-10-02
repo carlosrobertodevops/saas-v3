@@ -202,7 +202,8 @@
     "history_of_all": "Historial de todo el contenido creado",
     "no_history_selected": "No se encontró ninguna entrada de historial con la plantilla(s) seleccionada(s)",
     "all_templates": "Todas las plantillas",
-    "suscripciones": "Suscripciones"
+    "suscripciones": "Suscripciones",
+    "total_time_saved": "Tiempo total ahorrado"
   },
   "months": {
     "january": "Enero",
@@ -229,6 +230,22 @@
   },
   "filter_button": {
     "filter_by_templates": "Filtrar por plantillas"
+  },
+  "prompts": {
+    "post_title": "Título de la publicación",
+    "blog_tags": "Etiquetas del blog",
+    "youtube_hashtags": "Hashtags de YouTube",
+    "code_generator": "Generador de código",
+    "email_newsletter": "Boletín informativo por correo electrónico",
+    "question_answer": "Preguntas y respuestas",
+    "text_summarizer": "Resumidor de texto",
+    "content_rewriter": "Reescritor de contenido",
+    "product_description": "Descripción del producto",
+    "facebook_ads": "Anuncios de Facebook",
+    "blog_section": "Sección del blog",
+    "seo_meta_description": "Meta descripción SEO",
+    "link_bio": "Enlace a la biografía",
+    "instagram_captions": "Pie de foto de Instagram"
   },
   "ContentGenerator": {
     "RightSection": {
