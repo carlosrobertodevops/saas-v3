@@ -200,7 +200,9 @@
     "failed_copy_content": "Failed to copy this history content",
     "element_generated": "Element Generated",
     "history_of_all": "History of all the content created",
-    "no_history_selected": "No history entries were found with the selected template(s)"
+    "no_history_selected": "No history entries were found with the selected template(s)",
+    "all_templates": "All Templates",
+    "subscriptions": "Subscriptions"
   },
   "months": {
     "january": "January",

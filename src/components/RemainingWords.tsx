@@ -7,7 +7,7 @@ import { getLocale } from "next-intl/server";
 
 import { useAppContext } from "@/src/app/AppContext";
 import React, { useEffect, useState } from "react";
-import { countWords } from "../../Hisotry/Components/SingleHistoryItem";
+import { countWords } from "@/src/components/SingleHistoryItem";
 
 function RemainingWords() {
   const t = useTranslations("Plans");

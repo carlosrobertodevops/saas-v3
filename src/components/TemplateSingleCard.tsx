@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { useAppContext } from "@/src/app/AppContext";
 import { SingleTemplate } from "@/src/types/AppType";
 import { FaHeart } from "react-icons/fa";
@@ -40,11 +43,14 @@ export default function TemplateSingleCard({
   const { fakeUser } = useAppContext();
 
   function goToTheProPlanPage() {
+    const t = useTranslations("common");
+    const t1 = useTranslations("ContentGenerator");
+
     setMainMenuItems((prevItems) =>
       prevItems.map((singleItem) => ({
         ...singleItem,
-        isSelected: singleItem.label === "Subscriptions" ? true : false,
-      }))
+        isSelected: singleItem.label === t("search_here") ? true : false,
+      })),
     );
   }
 
@@ -54,7 +60,7 @@ export default function TemplateSingleCard({
         isDarkMode
           ? "bg-slate-800 text-white"
           : "bg-white border border-slate-100  "
-      } p-5  flex flex-col justify-between gap-2 
+      } p-5  flex flex-col justify-between gap-2
     rounded-lg h-[210px] relative  `}
     >
       {/* Icon and Title */}
@@ -95,7 +101,7 @@ export default function TemplateSingleCard({
                 setOpenContentGeneratorForm(true);
               }
             }}
-            className=" text-[16px] font-semibold hover:text-purple-600 
+            className=" text-[16px] font-semibold hover:text-purple-600
         cursor-pointer"
           >
             {singleTemplate.title}
@@ -111,7 +117,7 @@ export default function TemplateSingleCard({
       <div className="flex justify-between items-center">
         {/* Word Count */}
         <p className="text-slate-400 text-[12px] mt-4">
-          {sumTotalWords} Words Generated
+          {sumTotalWords} t1("words_generated")
         </p>
 
         {/* Favorite Icon */}

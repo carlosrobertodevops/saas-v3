@@ -1,7 +1,7 @@
 import { useAppContext } from "@/src/app/AppContext";
 import React from "react";
 import MainHeader from "../MainHeader";
-import TemplateSingleCard from "@/src/app/dashboard/Templates/Components/TemplateSingleCard";
+import TemplateSingleCard from "@/src/components/TemplateSingleCard";
 import { TbMoodEmpty } from "react-icons/tb";
 
 function FavoriteTemplates() {
@@ -28,7 +28,7 @@ function RenderFavoriteTemplates() {
   } = useAppContext();
 
   const filterByIsFavorite = allTemplates.filter(
-    (singleTemplate) => singleTemplate.isFavorite
+    (singleTemplate) => singleTemplate.isFavorite,
   );
 
   function updateGrid(): string {
@@ -56,7 +56,7 @@ function RenderFavoriteTemplates() {
 
   return (
     <div
-      className={`p-7 ${!isDarkMode && "border-slate-200"}   
+      className={`p-7 ${!isDarkMode && "border-slate-200"}
       gap-3 grid ${updateGrid()} mt-10`}
     >
       {filterByIsFavorite.map((singleTemplate, index) => (

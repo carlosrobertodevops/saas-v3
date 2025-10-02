@@ -12,7 +12,7 @@ import { useAppContext } from "@/src/app/AppContext";
 import DashStats from "@/src/components/DashStats";
 import Chart from "@/src/components/Chart";
 import ChartContainer from "@/src/components/Chart";
-import AllHistoryList from "@/src/components/AllHistoryList";
+import AllHistoryList from "@/src/components/AllHisotryList";
 
 function MainArea() {
   const {

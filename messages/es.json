@@ -200,7 +200,9 @@
     "failed_copy_content": "No se pudo copiar este contenido del historial",
     "element_generated": "Elemento generado",
     "history_of_all": "Historial de todo el contenido creado",
-    "no_history_selected": "No se encontró ninguna entrada de historial con la plantilla(s) seleccionada(s)"
+    "no_history_selected": "No se encontró ninguna entrada de historial con la plantilla(s) seleccionada(s)",
+    "all_templates": "Todas las plantillas",
+    "suscripciones": "Suscripciones"
   },
   "months": {
     "january": "Enero",

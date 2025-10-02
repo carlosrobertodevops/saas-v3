@@ -1,11 +1,14 @@
 "use client";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { ReactNode, SetStateAction, useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import Checkbox from "@mui/material/Checkbox";
 import { purple } from "@mui/material/colors";
 import { useAppContext } from "../AppContext";
-import { SingleTemplate } from "../types/AppType";
+import { SingleTemplate } from "@/src/types/AppType";
 import useClickOutside from "../Hooks/useClickOutside";
 import {
   SingleTemplateExtended,
@@ -27,6 +30,7 @@ function FilterByTemplates({
   openDropDown: boolean;
   setOpenDropDown: React.Dispatch<SetStateAction<boolean>>;
 }) {
+  const t = useTranslations("Common");
   const {
     allTemplatesForDropDownObject: { templatesForDropDown },
     isDarkModeObject: { isDarkMode },
@@ -36,11 +40,11 @@ function FilterByTemplates({
 
   const containerClassName = `${
     isDarkMode ? "bg-slate-800" : "bg-white border border-slate-50"
-  } absolute p-3 top-12 right-0 z-[90]  w-[290px] select-none shadow-md rounded-lg flex 
+  } absolute p-3 top-12 right-0 z-[90]  w-[290px] select-none shadow-md rounded-lg flex
   flex-col gap-2`;
 
   const inputClassName = ` font-light text-slate-400
-  placeholder:text-slate-400 focus:outline-none px-1 text-[12px] w-full 
+  placeholder:text-slate-400 focus:outline-none px-1 text-[12px] w-full
   ${isDarkMode ? "bg-slate-600" : "bg-slate-50"}`;
 
   useClickOutside(dropDownRef, () => setOpenDropDown(false), openDropDown);
@@ -57,7 +61,7 @@ function FilterByTemplates({
         <BiSearch className="text-slate-400 text-[18px]" />
         <input
           type="text"
-          placeholder="Search here..."
+          placeholder={t("search_here")}
           className={inputClassName}
         />
       </div>
@@ -101,7 +105,7 @@ function SingleItem({
 
   useEffect(() => {
     const filterTheSelectedItems = templatesForDropDown.filter(
-      (singleItem) => singleItem.isSelected
+      (singleItem) => singleItem.isSelected,
     );
 
     setSelectedItems(filterTheSelectedItems);

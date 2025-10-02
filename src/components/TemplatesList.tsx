@@ -1,9 +1,13 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { useAppContext } from "@/src/app/AppContext";
 import TemplateSingleCard from "./TemplateSingleCard";
 import { useState } from "react";
 import { SingleFilteringItem, SingleTemplate } from "@/src/types/AppType";
 
 export default function TemplateList() {
+  const t = useTranslations("common");
   const {
     allTemplatesObject: { allTemplates, setAllTemplates },
     templateFilteringItemsObject: { templatesFilteringItems },
@@ -15,13 +19,13 @@ export default function TemplateList() {
     const getTemplatesNamesSelected: SingleFilteringItem | undefined =
       templatesFilteringItems.find((singleItem) => singleItem.isSelected);
 
-    if (getTemplatesNamesSelected?.name === "All Templates") {
+    if (getTemplatesNamesSelected?.name === t("all_templates")) {
       return allTemplates;
     } else {
       return allTemplates.filter((singleTemplate) =>
         getTemplatesNamesSelected?.templates.includes(
-          singleTemplate.title.toLowerCase()
-        )
+          singleTemplate.title.toLowerCase(),
+        ),
       );
     }
   }
@@ -42,13 +46,13 @@ export default function TemplateList() {
 
   return (
     <div
-      className={`mx-4 p-7 ${!isDarkMode && "border-slate-200  border"}   
+      className={`mx-4 p-7 ${!isDarkMode && "border-slate-200  border"}
       gap-3 grid ${updateGrid()}`}
     >
       {filteringTemplates().map(
         (singleTemplate: SingleTemplate, index: number) => (
           <TemplateSingleCard key={index} singleTemplate={singleTemplate} />
-        )
+        ),
       )}
     </div>
   );

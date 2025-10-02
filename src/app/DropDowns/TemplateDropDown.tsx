@@ -1,9 +1,12 @@
 "use client";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { ReactNode, SetStateAction, useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useAppContext } from "../AppContext";
-import { SingleTemplate } from "../types/AppType";
+import { SingleTemplate } from "@/src/types/AppType";
 import useClickOutside from "../Hooks/useClickOutside";
 import { GiRoundStar } from "react-icons/gi";
 
@@ -19,6 +22,7 @@ function TemplateDropDown({
   openDropDown: boolean;
   setOpenDropDown: React.Dispatch<SetStateAction<boolean>>;
 }) {
+  const t = useTranslations("Common");
   const {
     allTemplatesObject: { allTemplates },
     selectedTemplatesObject: { selectedTemplate, setSelectedTemplate },
@@ -31,7 +35,7 @@ function TemplateDropDown({
   const [extendedAllTemplatesArray, setExtendedAllTemplatesArray] = useState(
     allTemplates.map((singleTemplate) => {
       return { ...singleTemplate, isSelected: false };
-    })
+    }),
   );
 
   useEffect(() => {
@@ -43,7 +47,7 @@ function TemplateDropDown({
     if (selectedTemplate !== null) {
       //Get the index in the template array based on the selected template
       const getTheSelectedTemplateIndex = allTemplates.findIndex(
-        (template) => template.id === selectedTemplate.id
+        (template) => template.id === selectedTemplate.id,
       );
 
       //Update the isSelected property
@@ -54,7 +58,7 @@ function TemplateDropDown({
           }
 
           return { ...template, isSelected: false };
-        }
+        },
       );
 
       setExtendedAllTemplatesArray(copyExtendedTemplatesArray);
@@ -70,7 +74,7 @@ function TemplateDropDown({
   }, [openContentGeneratorForm]);
 
   const filterBySearch = extendedAllTemplatesArray.filter((item) =>
-    item.title.toLowerCase().includes(inputSearch.toLowerCase())
+    item.title.toLowerCase().includes(inputSearch.toLowerCase()),
   );
 
   const dropDownRef = useRef<HTMLDivElement>(null);
@@ -80,9 +84,9 @@ function TemplateDropDown({
   return (
     <div
       ref={dropDownRef}
-      className={`bg-white     absolute p-3 top-20 
-          z-[90] border w-[310px]     
-      border-slate-50 select-none shadow-md rounded-lg flex 
+      className={`bg-white     absolute p-3 top-20
+          z-[90] border w-[310px]
+      border-slate-50 select-none shadow-md rounded-lg flex
       flex-col gap-2`}
     >
       {/* Search Bar */}
@@ -94,7 +98,7 @@ function TemplateDropDown({
           value={inputSearch}
           onChange={(e) => setInputSearch(e.target.value)}
           type="text"
-          placeholder="Search here..."
+          placeholder={t("search_here")}
           className="bg-slate-50 font-light text-slate-400
               placeholder:text-slate-400 focus:outline-none px-1 text-[12px]   w-full"
         />
@@ -124,7 +128,7 @@ function TemplateDropDown({
         prevItems.map((singleItem) => ({
           ...singleItem,
           isSelected: singleItem.label === "Subscriptions" ? true : false,
-        }))
+        })),
       );
     }
 
@@ -136,7 +140,7 @@ function TemplateDropDown({
           }
 
           return { ...template, isSelected: false };
-        }
+        },
       );
 
       setExtendedAllTemplatesArray(copyExtendedTemplatesArray);
@@ -167,7 +171,7 @@ function TemplateDropDown({
         }}
         className={` ${
           dropDownItem.isSelected && "border border-purple-600 bg-purple-50"
-        } flex items-center justify-between  
+        } flex items-center justify-between
         gap-7 p-[6px] px-2 rounded-lg text-slate-600  cursor-pointer ${decreaseOpacityDropDownItem()}   `}
       >
         <div className={`flex gap-2 items-center   `}>

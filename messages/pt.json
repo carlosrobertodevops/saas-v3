@@ -204,7 +204,9 @@
     "failed_copy_content": "Falha ao copiar este conteúdo do histórico",
     "element_generated": "Elemento gerado",
     "history_of_all": "Histórico de todo o conteúdo criado",
-    "no_history_selected": "Não foi encontrada nenhuma entrada de histórico com a(s) planta(s) selecionada(s)"
+    "no_history_selected": "Não foi encontrada nenhuma entrada de histórico com a(s) planta(s) selecionada(s)",
+    "all_templates": "Todos os modelos",
+    "assinaturas": "Assinaturas"
   },
   "months": {
     "january": "Janeiro",

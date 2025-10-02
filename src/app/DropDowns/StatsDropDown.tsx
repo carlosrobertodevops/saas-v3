@@ -1,7 +1,10 @@
 "use client";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { StatsDropDownItem } from "../types/AppType";
+import { StatsDropDownItem } from "@/src/types/AppType";
 import { useAppContext } from "../AppContext";
 import useClickOutside from "../Hooks/useClickOutside";
 
@@ -40,8 +43,8 @@ function StatsDropDown({
       className={`${
         isDarkMode ? "bg-slate-700" : "bg-white border border-slate-50 "
       } absolute p-3  top-6
-          z-[90]  w-[220px]   
-      select-none shadow-md rounded-lg flex 
+          z-[90]  w-[220px]
+      select-none shadow-md rounded-lg flex
       flex-col gap-2`}
     >
       {statsData.map((item, index) => (

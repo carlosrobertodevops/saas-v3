@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl";
 
 // SideBar
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "./Components/Logo";
-import MainSection from "./Components/MainSection";
-import OthersSection from "./Components/OthersSection";
-import RemainingWords from "./Components/RemainingWords";
+import Logo from "@/src/components/Logo";
+import MainSection from "@/src/components/MainSection";
+import OthersSection from "@/src/components/OthersSection";
+import RemainingWords from "@/src/components/RemainingWords";
 import { useAppContext } from "@/src/app/AppContext";
 
 function SideBar() {
