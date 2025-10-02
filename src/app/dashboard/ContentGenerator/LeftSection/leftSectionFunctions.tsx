@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { SingleTemplate } from "@/src/types/AppType";
 import { prompts } from "./prompts";
 import { v4 as uuidv4 } from "uuid";
@@ -5,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import MainTopic from "./MainTopic";
 import ToneOrStyle from "./ToneOrStyle";
 import Audience from "./Audience";
-import LanguageSelector from "./OtherComponents/LanguageSelector";
-import Keywords from "./OtherComponents/Keywords";
+import LanguageSelector from "../../../../components/LanguageSelector";
+import Keywords from "../../../../components/Keywords";
 import { useAppContext } from "@/src/app/AppContext";
 import { Dispatch, SetStateAction } from "react";
 
@@ -16,8 +19,10 @@ export async function generateContent(
   toneOrStyleInput: string,
   selectLanguage: string,
   audienceInput: string,
-  keywords: string[]
+  keywords: string[],
 ) {
+  const t = useTranslations("common");
+
   let prompt = "";
   let theTitle = "";
 
@@ -215,7 +220,7 @@ export async function generateContent(
           content: content
             .map(
               (qna: { question: string; answer: string }) =>
-                `<h3>${qna.question}</h3><p>${qna.answer}</p>`
+                `<h3>${qna.question}</h3><p>${qna.answer}</p>`,
             )
             .join(""),
         };

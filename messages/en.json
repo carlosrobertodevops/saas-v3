@@ -162,7 +162,10 @@
     "generate": "Generate"
   },
   "subscription": {
-    "title": "Plans and Pricing"
+    "title": "Plans and Pricing",
+    "plans": "Plans",
+    "pricing": "Pricing",
+    "features": "Features"
   },
   "common": {
     "delete": "Delete",
@@ -176,7 +179,54 @@
     "close": "Close",
     "loading": "Loading...",
     "error": "Error",
-    "settings": "Settings"
+    "settings": "Settings",
+    "overview": "Overview",
+    "preferences": "Preferences",
+    "minutes": "Minutes",
+    "hours": "Hours",
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "years": "Years",
+    "templates": "Templates",
+    "Title": "Title",
+    "created_at": "Created At",
+    "total_words": "Total Words",
+    "Actions": "Actions",
+    "recent_history": "Recent History",
+    "history": "History",
+    "view_all": "View All",
+    "content_copied_successfully": "Content copied successfully",
+    "failed_copy_content": "Failed to copy this history content",
+    "element_generated": "Element Generated",
+    "history_of_all": "History of all the content created",
+    "no_history_selected": "No history entries were found with the selected template(s)"
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "days": {
+    "day_1": "Day 1",
+    "day_2": "Day 2",
+    "day_3": "Day 3",
+    "day_4": "Day 4",
+    "day_5": "Day 5",
+    "day_6": "Day 6",
+    "day_7": "Day 7"
+  },
+  "filter_button": {
+    "filter_by_templates": "Filter By Templates"
   },
   "ContentGenerator": {
     "RightSection": {

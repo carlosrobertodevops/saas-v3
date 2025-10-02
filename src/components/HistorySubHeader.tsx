@@ -1,10 +1,13 @@
-import { useAppContext } from '@/src/app/AppContext';
-import FilterByTemplates from '@/src/app/DropDowns/FilterByTemplatesDropDown';
-import { useState } from 'react';
+// Traduções
+import { useTranslations } from "next-intl";
 
-import { IoFilter } from 'react-icons/io5';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { RiArrowDropUpLine } from 'react-icons/ri';
+import { useAppContext } from "@/src/app/AppContext";
+import FilterByTemplates from "@/src/app/DropDowns/FilterByTemplatesDropDown";
+import { useState } from "react";
+
+import { IoFilter } from "react-icons/io5";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { RiArrowDropUpLine } from "react-icons/ri";
 
 export default function HistorySubHeader() {
   const {
@@ -19,18 +22,19 @@ export default function HistorySubHeader() {
   const isMobileView = windowWidth <= 694;
 
   //Filter Button
-
   function FilterButton() {
+    const t = useTranslations("filter_button");
+
     const containerClass = `flex  text-[14px]   gap-2 rounded-md px-2
       hover:cursor-pointer h-[38px] items-center relative ${
-        isDarkMode ? 'bg-slate-800 ' : 'bg-white border border-slate-50 '
+        isDarkMode ? "bg-slate-800 " : "bg-white border border-slate-50 "
       } `;
 
     const buttonClass = `flex items-center gap-1 `;
 
     const filterByTemplateText = ` ${
-      isDarkMode ? 'text-white' : 'text-slate-500'
-    } ${isMobileView ? 'hidden' : 'block'} text-sm hover:text-purple-600`;
+      isDarkMode ? "text-white" : "text-slate-500"
+    } ${isMobileView ? "hidden" : "block"} text-sm hover:text-purple-600`;
 
     function dropDownIconToggle() {
       if (openDropDown) {
@@ -51,7 +55,7 @@ export default function HistorySubHeader() {
         <IoFilter className="text-purple-600 text-[16px]" />
         {/* Text and drop down icon */}
         <div className={buttonClass}>
-          <span className={filterByTemplateText}>Filter By Templates</span>
+          <span className={filterByTemplateText}>t("filter_by_templates")</span>
           {dropDownIconToggle()}
         </div>
         {/* template filter drop down */}
@@ -61,17 +65,16 @@ export default function HistorySubHeader() {
 
   //Subheader title
   function SubHeaderTitle() {
+    const t = useTranslations("common");
     const itemsGeneratedNumber = allHistoryData.length;
     return (
       <div className="flex flex-col">
         {/*  */}
         <span className="font-semibold text-[18px]">
-          {itemsGeneratedNumber} Element Generated
+          {itemsGeneratedNumber} t("element_generated")
         </span>
         {/*  */}
-        <span className="text-slate-400 text-[10px]">
-          History of all the content created
-        </span>
+        <span className="text-slate-400 text-[10px]">t("history_of_all")</span>
       </div>
     );
   }

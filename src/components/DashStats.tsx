@@ -1,8 +1,5 @@
 // Tradução
-import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { getLocale } from "next-intl/server";
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 
 import React, { useEffect, useState } from "react";
 import { MdOutlineSummarize } from "react-icons/md";
@@ -15,6 +12,7 @@ import { useAppContext } from "@/src/app/AppContext";
 import { HistoryData } from "@/src/types/AppType";
 
 const DashStats = () => {
+  const t = useTranslations("common");
   const {
     statsDropDownItemsObject: { statsData, setStatsData },
     allHistoryDataObject: { allHistoryData },
@@ -54,7 +52,7 @@ const DashStats = () => {
 
     // Format the time saved as "xh xxmin" or just "xxmin" if less than 1 hour
     const formattedTimeSaved =
-      hours > 0 ? `${hours} h ${minutes} min` : `${minutes} minutes`;
+      hours > 0 ? `${hours} h ${minutes} min` : `${minutes} {t("minutes)}`;
 
     return {
       totalWords,
@@ -66,6 +64,7 @@ const DashStats = () => {
 
   //Update the stats data array
   useEffect(() => {
+    const t = useTranslations("common");
     const {
       totalWords,
       totalDocGenerated,
@@ -104,7 +103,9 @@ const DashStats = () => {
 
   return (
     <div className="flex flex-col gap-3 px-4 pt-3 ">
-      <h2 className="font-semibold text-[16px] text-slate-400">Overview</h2>
+      <h2 className="font-semibold text-[16px] text-slate-400">
+        t("overview")
+      </h2>
 
       <div
         className={`grid ${

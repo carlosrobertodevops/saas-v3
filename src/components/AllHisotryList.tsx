@@ -1,8 +1,14 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import SingleHistoryItem from "./SingleHistoryItem";
 import { useAppContext } from "@/src/app/AppContext";
-import { SingleTemplateExtended, useAllHistoryContext } from "../AllHistory";
+import {
+  SingleTemplateExtended,
+  useAllHistoryContext,
+} from "@/src/app/dashboard/Hisotry/AllHistory";
 import { HistoryData, SingleTemplate } from "@/src/types/AppType";
 
 function AllHistoryList() {
@@ -49,11 +55,11 @@ function AllHistoryList() {
                   }
 
                   return singleItemDrop;
-                }
+                },
               );
 
               setSelectedItems(
-                updateTemplateArray.filter((item) => item.isSelected)
+                updateTemplateArray.filter((item) => item.isSelected),
               );
               setTemplatesForDropDown(updateTemplateArray);
             }}
@@ -65,30 +71,34 @@ function AllHistoryList() {
   }
 
   function AllColumns() {
+    const t = useTranslations("common");
+
     return (
       <div
-        className={`w-full border rounded-t-lg bg-slate-100 border-slate-200  
+        className={`w-full border rounded-t-lg bg-slate-100 border-slate-200
       py-2 overflow-hidden px-[13px] grid ${
         isMobileView ? "grid-cols-4" : "grid-cols-5"
       }`}
       >
         {/* First column */}
         <span className="text-[14px] text-slate-400 font-semibold">
-          Template
+          {t("template")}
         </span>
         {/* Second column */}
-        <span className="text-[14px] text-slate-400 font-semibold">Title</span>
+        <span className="text-[14px] text-slate-400 font-semibold">
+          {t("title")}
+        </span>
         {!isMobileView && (
           <span className="text-[14px] text-slate-400 font-semibold">
-            Created At
+            {t("created_at")}
           </span>
         )}
 
         <span className="text-[14px] text-slate-400 font-semibold">
-          Total Words
+          {t("total_words")}
         </span>
         <span className="text-[14px]   text-center text-slate-400 font-semibold">
-          Actions
+          {t("actions")}
         </span>
       </div>
     );
@@ -108,7 +118,7 @@ function AllHistoryList() {
   const filteredTemplates =
     selectedItems.length > 0
       ? allHistoryData.filter((singleHistory) =>
-          extractSelectedTemplates.includes(singleHistory.template)
+          extractSelectedTemplates.includes(singleHistory.template),
         )
       : allHistoryData;
 
@@ -122,11 +132,12 @@ function AllHistoryList() {
     filteredTemplates.length === 0 && selectedItems.length > 0;
 
   function RenderFilteredTemplates() {
+    const t = useTranslations("common");
     if (areElementsNotFoundWithFilter) {
       return (
         <div className="flex w-full h-20 items-center justify-center ">
           <span className="text-gray-400 text-[13px]">
-            No history entry was found with the template(s) selected
+            {t("no_history_selected")}
           </span>
         </div>
       );

@@ -162,7 +162,10 @@
     "generate": "Generar"
   },
   "subscription": {
-    "title": "Planes y precios"
+    "title": "Planes y precios",
+    "plans": "Planos",
+    "pricing": "Precios",
+    "features": "Funcionalidades"
   },
   "common": {
     "delete": "Eliminar",
@@ -176,7 +179,54 @@
     "close": "Cerrar",
     "loading": "Cargando...",
     "error": "Error",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "overview": "Resumen",
+    "preferences": "Preferencias",
+    "minutes": "Minutos",
+    "hours": "Horas",
+    "days": "Días",
+    "weeks": "Semanas",
+    "months": "Meses",
+    "years": "Años",
+    "templates": "Plantillas",
+    "title": "Título",
+    "created_at": "Creado en",
+    "total_words": "Total de palabras",
+    "actions": "Acciones",
+    "recent_history": "Historial reciente",
+    "historia": "Historia",
+    "view_all": "Ver todo",
+    "content_copied_successfully": "Contenido copiado correctamente",
+    "failed_copy_content": "No se pudo copiar este contenido del historial",
+    "element_generated": "Elemento generado",
+    "history_of_all": "Historial de todo el contenido creado",
+    "no_history_selected": "No se encontró ninguna entrada de historial con la plantilla(s) seleccionada(s)"
+  },
+  "months": {
+    "january": "Enero",
+    "february": "Febrero",
+    "march": "Marzo",
+    "april": "Abril",
+    "may": "Mayo",
+    "june": "Junio",
+    "july": "Julio",
+    "august": "Agosto",
+    "september": "Septiembre",
+    "october": "Octubre",
+    "november": "Noviembre",
+    "december": "Diciembre"
+  },
+  "days": {
+    "day_1": "Dia 1",
+    "day_2": "Dia 2",
+    "day_3": "Dia 3",
+    "day_4": "Dia 4",
+    "day_5": "Dia 5",
+    "day_6": "Dia 6",
+    "day_7": "Dia 7"
+  },
+  "filter_button": {
+    "filter_by_templates": "Filtrar por plantillas"
   },
   "ContentGenerator": {
     "RightSection": {

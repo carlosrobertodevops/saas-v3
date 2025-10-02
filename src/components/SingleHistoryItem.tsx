@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl";
+
 import React from "react";
 import { LuHistory } from "react-icons/lu"; // Example icons, replace with actual icons if needed
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { useAppContext } from "@/src/app/AppContext";
-import { SingleTemplateExtended } from "../AllHistory";
+import { SingleTemplateExtended } from "@/src/app/dashboard/Hisotry/AllHistory";
 import { HistoryData } from "@/src/types/AppType";
 import { FaRegCopy } from "react-icons/fa";
-import { convertFromTextToReactNode } from "../../ContentGenerator/LeftSection/LeftSection";
+import { convertFromTextToReactNode } from "@/src/app/dashboard/ContentGenerator/LeftSection/LeftSection";
 import { loadManifestWithRetries } from "next/dist/server/load-components";
 import toast from "react-hot-toast";
 
@@ -16,6 +18,7 @@ export function SingleHistoryItem({
 }: {
   SingleHistory: HistoryData;
 }) {
+  const t = useTranslations("common");
   const {
     windowWidthObject: { windowWidth },
     openConfirmationWindowObject: { setOpenConfirmationWindow },
@@ -34,13 +37,13 @@ export function SingleHistoryItem({
               navigator.clipboard
                 .writeText(SingleHistory.content)
                 .then(() => {
-                  toast.success("Content copied successfully");
+                  toast.success(t("content_copied_successfully"));
                 })
                 .catch(() => {
-                  toast.error("Failed to copy this history content");
+                  toast.error(t("failed_copy_content"));
                 });
             }}
-            className=" rounded-[4px] p-1  flex items-center justify-center 
+            className=" rounded-[4px] p-1  flex items-center justify-center
         cursor-pointer bg-purple-200 hover:bg-purple-300 transition-all"
           >
             <FaRegCopy className="text-purple-600 text-[15px]" />
@@ -52,7 +55,7 @@ export function SingleHistoryItem({
               setOpenConfirmationWindow(true);
               setSelectedHistoryEntry(SingleHistory);
             }}
-            className=" rounded-[4px] p-1  flex items-center justify-center 
+            className=" rounded-[4px] p-1  flex items-center justify-center
         cursor-pointer bg-slate-200 hover:bg-slate-300 transition-all"
           >
             <MdDelete className="text-slate-600 text-[15px]" />
@@ -68,7 +71,7 @@ export function SingleHistoryItem({
         {/* Icon */}
         {!isMobileView && (
           <div
-            className="  bg-purple-200 rounded-md p-[7px] flex 
+            className="  bg-purple-200 rounded-md p-[7px] flex
         items-center justify-center"
           >
             {convertFromTextToReactNode(SingleHistory.template)}
@@ -143,22 +146,23 @@ export function truncateString(text: string, maxLength: number): string {
 
 export function formatIsoDate(isoDate: string): string {
   // Create a new Date object from the ISO string
+  const t = useTranslations("months");
   const date = new Date(isoDate);
 
   // Define an array of month names
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    t("january"),
+    t("february"),
+    t("march"),
+    t("april"),
+    t("may"),
+    t("june"),
+    t("july"),
+    t("august"),
+    t("september"),
+    t("october"),
+    t("november"),
+    t("december"),
   ];
 
   // Extract day, month, and year from the date

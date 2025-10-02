@@ -1,8 +1,13 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import React, { useState, KeyboardEvent, ChangeEvent } from "react";
 import { IoClose } from "react-icons/io5";
-import { useContentGeneratorForm } from "../LeftSectionContext";
+import { useContentGeneratorForm } from "@/src/app/dashboard/ContentGenerator/LeftSection/LeftSectionContext";
 
 function Keywords() {
+  const t = useTranslations("Common");
+
   const {
     keywordsObject: { keywords, setKeywords },
     errorsObject: { errors, setErrors },
@@ -10,7 +15,7 @@ function Keywords() {
   const [inputValue, setInputValue] = useState<string>("");
 
   const getIndexKeywordsError = errors.findIndex(
-    (error) => error.label === "keywords"
+    (error) => error.label === "keywords",
   );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +26,7 @@ function Keywords() {
       prevErrors.map((error) => ({
         ...error,
         show: error.label === "keywords" ? false : error.show,
-      }))
+      })),
     );
   };
 
@@ -68,7 +73,7 @@ function Keywords() {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="Add keywords here..."
+          placeholder={t("addKeywordsPlaceholder")}
           onKeyDown={handleInputKeyDown}
           className="flex-grow text-[13px] outline-none"
         />

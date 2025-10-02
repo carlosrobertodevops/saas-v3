@@ -166,7 +166,10 @@
     "generate": "Gerar"
   },
   "subscription": {
-    "title": "Planos e Preços"
+    "title": "Planos e Preços",
+    "plans": "Planos",
+    "pricing": "Preços",
+    "features": "Funcionalidades"
   },
   "common": {
     "delete": "Excluir",
@@ -180,7 +183,54 @@
     "close": "Fechar",
     "loading": "Carregando...",
     "error": "Erro",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "overview": "Visão geral",
+    "preferences": "Preferências",
+    "minutes": "Minutos",
+    "hours": "Horas",
+    "days": "Dias",
+    "weeks": "Semanas",
+    "months": "Meses",
+    "years": "Anos",
+    "templates": "Modelos",
+    "title": "Título",
+    "created_at": "Criado em",
+    "total_words": "Total de palavras",
+    "actions": "Ações",
+    "recent_history": "Histórico recente",
+    "história": "História",
+    "view_all": "Ver tudo",
+    "content_copied_successfully": "Conteúdo copiado com sucesso",
+    "failed_copy_content": "Falha ao copiar este conteúdo do histórico",
+    "element_generated": "Elemento gerado",
+    "history_of_all": "Histórico de todo o conteúdo criado",
+    "no_history_selected": "Não foi encontrada nenhuma entrada de histórico com a(s) planta(s) selecionada(s)"
+  },
+  "months": {
+    "january": "Janeiro",
+    "february": "Fevereiro",
+    "march": "Março",
+    "april": "Abril",
+    "may": "Maio",
+    "june": "Junho",
+    "july": "Julho",
+    "august": "Agosto",
+    "september": "Setembro",
+    "october": "Outubro",
+    "november": "Novembro",
+    "december": "Dezembro"
+  },
+  "days": {
+    "day_1": "Dia 1",
+    "day_2": "Dia 2",
+    "day_3": "Dia 3",
+    "day_4": "Dia 4",
+    "day_5": "Dia 5",
+    "day_6": "Dia 6",
+    "day_7": "Dia 7"
+  },
+  "filter_button": {
+    "filter_by_templates": "Filtrar por modelos"
   },
   "ContentGenerator": {
     "RightSection": {

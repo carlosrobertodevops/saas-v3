@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useContentGeneratorForm } from "../LeftSectionContext";
+import { useContentGeneratorForm } from "@/src/app/dashboard/ContentGenerator/LeftSection/LeftSectionContext";
 
 const LanguageSelector = () => {
   const {
@@ -8,19 +8,19 @@ const LanguageSelector = () => {
   } = useContentGeneratorForm();
 
   const handleLanguageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setSelectLanguage(event.target.value);
     setErrors((prevErrors) =>
       prevErrors.map((error) => ({
         ...error,
         show: error.label === "selectedLanguage" ? false : error.show,
-      }))
+      })),
     );
   };
 
   const getIndexSelectedLanguageError = errors.findIndex(
-    (error) => error.label === "selectedLanguage"
+    (error) => error.label === "selectedLanguage",
   );
 
   return (

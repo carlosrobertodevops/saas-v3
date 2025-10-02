@@ -1,4 +1,8 @@
 "use client";
+
+// Traduções
+import { useTranslations } from "next-intl";
+
 import React, { ReactNode, useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import { LuHistory } from "react-icons/lu"; // Example icons, replace with actual icons if needed
@@ -24,14 +28,16 @@ import {
   sortAndShortenMonth,
 } from "@/src/LocalData/mainData";
 
+const t = useTranslations();
+
 const data = [
-  { name: "Day 1", words: 0 },
-  { name: "Day 2", words: 0 },
-  { name: "Day 3", words: 10 },
-  { name: "Day 4", words: 10 },
-  { name: "Day 5", words: 20 },
-  { name: "Day 6", words: 34 },
-  { name: "Day 7", words: 34 },
+  { name: t("days.day_1"), words: 0 },
+  { name: t("days.day_2"), words: 0 },
+  { name: t("days.day_3"), words: 10 },
+  { name: t("days.day_4"), words: 10 },
+  { name: t("days.day_5"), words: 20 },
+  { name: t("days.day_6"), words: 34 },
+  { name: t("days.day_7"), words: 34 },
 ];
 
 const ChartContainer = () => {
@@ -40,7 +46,7 @@ const ChartContainer = () => {
   } = useAppContext();
   return (
     <div
-      className={`p-5 flex gap-3 flex-col rounded-md    ${
+      className={`p-5 flex gap-3 flex-col rounded-md ${
         isDarkMode
           ? "bg-slate-800 text-white"
           : "bg-white border border-slate-50"
@@ -61,11 +67,11 @@ const ChartContainer = () => {
     } = useAppContext();
 
     const getSelectedItem = [...statsData].find(
-      (singleItem) => singleItem.isSelected === true
+      (singleItem) => singleItem.isSelected === true,
     );
 
     const getSelectedDaysItem = [...daysDropDown].find(
-      (singleItem) => singleItem.isSelected === true
+      (singleItem) => singleItem.isSelected === true,
     );
 
     return (
@@ -176,10 +182,10 @@ const ChartContainer = () => {
       const filteredData = filterDataByDays(daysToShow);
 
       const totalWordsCount = sortAndShortenMonth(
-        formatAndAggregateTotalCount(filteredData) // Use filteredData here
+        formatAndAggregateTotalCount(filteredData), // Use filteredData here
       );
       const totalDocCount = sortAndShortenMonth(
-        formatAndCountDocuments(filteredData) // Use filteredData here
+        formatAndCountDocuments(filteredData), // Use filteredData here
       );
 
       const totalTimeSaved = formatAndAggregateTimeSaved(filteredData); // Use filteredData here

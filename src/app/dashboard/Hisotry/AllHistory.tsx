@@ -3,9 +3,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { useAppContext } from "@/src/app/AppContext";
 import MainHeader from "../MainHeader";
-import SingleHistoryItem from "./Components/SingleHistoryItem";
-import HistorySubHeader from "./Components/HistorySubHeader";
-import AllHistoryList from "./Components/AllHistoryList";
+import SingleHistoryItem from "@/src/components/SingleHistoryItem";
+import HistorySubHeader from "@/src/components/HistorySubHeader";
+import AllHistoryList from "@/src/components/AllHisotryList";
 import { SingleTemplate } from "@/src/types/AppType";
 
 export type SingleTemplateExtended = SingleTemplate & {
@@ -46,7 +46,7 @@ function History() {
   } = useAppContext();
 
   const [selectedItems, setSelectedItems] = useState<SingleTemplateExtended[]>(
-    templatesForDropDown.filter((singleItem) => singleItem.isSelected)
+    templatesForDropDown.filter((singleItem) => singleItem.isSelected),
   );
 
   //
