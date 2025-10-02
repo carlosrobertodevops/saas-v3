@@ -1,6 +1,5 @@
 import { useAppContext } from "@/src/app/AppContext";
 import { useContentGeneratorForm } from "./LeftSectionContext";
-useContentGeneratorForm;
 
 export default function Audience() {
   const {

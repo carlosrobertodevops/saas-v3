@@ -12,7 +12,8 @@ import { useAppContext } from "@/src/app/AppContext";
 import { HistoryData } from "@/src/types/AppType";
 
 const DashStats = () => {
-  const t = useTranslations("common");
+  // Traduções de "common"
+  const t = useTranslations("Common");
   const {
     statsDropDownItemsObject: { statsData, setStatsData },
     allHistoryDataObject: { allHistoryData },
@@ -25,7 +26,7 @@ const DashStats = () => {
 
   const updateTheStatsData =
     windowWidth <= 1215
-      ? statsData.filter((data) => data.title !== "Total time saved")
+      ? statsData.filter((data) => data.title !== t("total_time_saved"))
       : statsData;
 
   const calculateStats = (allHistoryData: HistoryData[]) => {
@@ -43,6 +44,9 @@ const DashStats = () => {
     // Calculate the average word per document
     const averageWordsPerDoc =
       totalDocGenerated > 0 ? totalWords / totalDocGenerated : 0;
+
+    // Tradução de "common"
+    const t = useTranslations("common");
 
     // Calculate total time saved (in minutes)
     const totalTimeSaved = totalWords / averageWPM;
@@ -104,7 +108,7 @@ const DashStats = () => {
   return (
     <div className="flex flex-col gap-3 px-4 pt-3 ">
       <h2 className="font-semibold text-[16px] text-slate-400">
-        t("overview")
+        {t("overview")}
       </h2>
 
       <div
