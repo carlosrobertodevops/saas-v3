@@ -207,7 +207,12 @@
     "no_history_selected": "Não foi encontrada nenhuma entrada de histórico com a(s) planta(s) selecionada(s)",
     "all_templates": "Todos os modelos",
     "assinaturas": "Assinaturas",
-    "total_time_saved": "Tempo total economizado"
+    "total_time_saved": "Tempo total economizado",
+    "there_are_no_templates_yet": "Ainda não há modelos marcados como favoritos...",
+    "catchy_": "Cativante",
+    "professional_": "Profissional",
+    "casual_": "Casual",
+    "informative_": "Informativo"
   },
   "months": {
     "january": "Janeiro",
@@ -250,6 +255,37 @@
     "seo_meta_description": "Meta descrição de SEO",
     "link_bio": "Link da biografia",
     "instagram_captions": "Legendas do Instagram"
+  },
+  "render_form_fields": {
+    "blog_topic_label": "Tópico da publicação do blog",
+    "blog_topic_placeholder": "Insira o tópico da publicação do blog",
+    "blog_tag_label": "Conteúdo da publicação do blog",
+    "blog_tag_placeholder": "Insira uma breve descrição da publicação do blog",
+    "blog_context_label": "Conteúdo da publicação do blog",
+    "blog_context_placeholder": "Insira uma breve descrição da publicação do blog",
+    "video_topic_label": "Tópico do vídeo",
+    "video_topic_placeholder": "Tópico do vídeo",
+    "programming_task_label": "Tarefa de programação",
+    "programming_task_placeholder": "Insira uma descrição da tarefa para a qual deseja codificar",
+    "newsletter_topic_label": "Tópico da newsletter",
+    "newsletter_placeholder_placeholder": "Insira o tópico principal da sua newsletter",
+    "main_question_label": "Pergunta Principal",
+    "main_question_placeholder": "Digite a pergunta que deseja responder",
+    "text_summarize_label": "Texto para Resumir",
+    "text_summarize_placeholder": "Digite o texto que deseja resumir",
+    "content_rewrite_label": "Conteúdo para Reescrever",
+    "content_rewrite_placeholder": "Digite o conteúdo que deseja reescrever",
+    "product_name_label": "Nome do Produto",
+    "product_name_placeholder": "Digite o nome do produto",
+    "ad_content_label": "Conteúdo do Anúncio",
+    "ad_content_placeholder": "Digite o conteúdo do seu anúncio do Facebook",
+    "section_topic_label": "Tópico da Seção",
+    "section_topic_placeholder": "Digite o tópico desta seção do blog",
+    "page_content_label": "Conteúdo da Página",
+    "your_profession_label": "Sua Profissão",
+    "your_profession_placeholder": "Insira sua profissão ou função",
+    "instagram_captions_label": "Tópico da Publicação",
+    "instagram_captions_placeholder": "Insira o tópico da sua publicação no Instagram"
   },
   "ContentGenerator": {
     "RightSection": {

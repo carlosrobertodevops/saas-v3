@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import MainTopic from "./MainTopic";
 import ToneOrStyle from "./ToneOrStyle";
 import Audience from "./Audience";
-import LanguageSelector from "../../../../components/LanguageSelector";
-import Keywords from "../../../../components/Keywords";
+import LanguageSelector from "@/src/components/LanguageSelector";
+import Keywords from "@/src//components/Keywords";
 import { useAppContext } from "@/src/app/AppContext";
 import { Dispatch, SetStateAction } from "react";
 
@@ -21,8 +21,6 @@ export async function generateContent(
   audienceInput: string,
   keywords: string[],
 ) {
-  const t = useTranslations("common");
-
   let prompt = "";
   let theTitle = "";
 
@@ -257,6 +255,8 @@ export async function generateContent(
 }
 
 export const RenderFormFields = () => {
+  const t = useTranslations("render_form_fields");
+
   const {
     selectedTemplatesObject: { selectedTemplate },
   } = useAppContext();
@@ -266,8 +266,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Blog Post Topic"
-            placeholder="Enter your blog post topic"
+            label={t("blog_topic_label")}
+            placeholder={t("blog_topic_placeholder")}
           />
           <ToneOrStyle />
         </>
@@ -276,8 +276,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Blog Post Content"
-            placeholder="Enter a brief description of your blog post"
+            label={t("blog_tag_label")}
+            placeholder={t("blog_tag_placeholder")}
           />
           <Audience />
         </>
@@ -286,8 +286,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Video Topic"
-            placeholder="Enter your YouTube video topic"
+            label={t("blog_context_label")}
+            placeholder={t("blog_context_placeholder")}
           />
           <Audience />
         </>
@@ -296,8 +296,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Programming Task"
-            placeholder="Enter a description of the task you want code for"
+            label={t("programming_task_label")}
+            placeholder={t("programming_task_placeholder")}
           />
           <LanguageSelector />
         </>
@@ -306,8 +306,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Newsletter Topic"
-            placeholder="Enter the main topic of your newsletter"
+            label={t("newsletter_topic_label")}
+            placeholder={t("newsletter_placeholder_placeholder")}
           />
           <Audience />
           <ToneOrStyle />
@@ -317,8 +317,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Main Question"
-            placeholder="Enter the question you want answered"
+            label={t("main_question_label")}
+            placeholder={t("main_question_placeholder")}
           />
           <ToneOrStyle />
           <Audience />
@@ -328,8 +328,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Text to Summarize"
-            placeholder="Enter the text you want summarized"
+            label={t("text_summarize_label")}
+            placeholder={t("text_summarize_placeholder")}
           />
           <ToneOrStyle />
         </>
@@ -338,8 +338,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Content to Rewrite"
-            placeholder="Enter the content you want rewritten"
+            label={t("content_rewrite_label")}
+            placeholder={t("content_rewrite_placeholde")}
           />
           <ToneOrStyle />
         </>
@@ -348,8 +348,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Product Name"
-            placeholder="Enter the name of the product"
+            label={t("product_name_label")}
+            placeholder={t("product_name_placeholder")}
           />
           {/* <ProductFeatures /> */}
           <ToneOrStyle />
@@ -359,8 +359,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Ad Content"
-            placeholder="Enter the content for your Facebook ad"
+            label={t("ad_content_label")}
+            placeholder={t("ad_content_placeholder")}
           />
           <Audience />
           <ToneOrStyle />
@@ -370,8 +370,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Section Topic"
-            placeholder="Enter the topic of this blog section"
+            label={t("section_topic_label")}
+            placeholder={t("section_topic_placeholder")}
           />
           <ToneOrStyle />
         </>
@@ -380,8 +380,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Page Content"
-            placeholder="Describe the content of the page"
+            label={t("page_content_label")}
+            placeholder={t("your_profession_placeholder")}
           />
           <Keywords />
         </>
@@ -390,8 +390,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Your Profession"
-            placeholder="Enter your profession or role"
+            label={t("your_profession_label")}
+            placeholder={t("your_profession_placeholder")}
           />
           {/* <CareerAchievements /> */}
         </>
@@ -400,8 +400,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Post Topic"
-            placeholder="Enter the topic of your Instagram post"
+            label={t("instagram_captions_label")}
+            placeholder={t("instagram_captions_placeholder")}
           />
           <ToneOrStyle />
           {/* <Hashtags /> */}
@@ -411,8 +411,8 @@ export const RenderFormFields = () => {
       return (
         <>
           <MainTopic
-            label="Blog Post Topic"
-            placeholder="Enter your blog post topic"
+            label={t("blog_topic_label")}
+            placeholder={t("blog_topic_placeholder")}
           />
           <ToneOrStyle />
           <Audience />

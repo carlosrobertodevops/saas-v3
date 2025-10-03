@@ -4,6 +4,9 @@ import MainHeader from "../MainHeader";
 import TemplateSingleCard from "@/src/components/TemplateSingleCard";
 import { TbMoodEmpty } from "react-icons/tb";
 
+// Traduções
+import { useTranslations } from "next-intl";
+
 function FavoriteTemplates() {
   const {
     isDarkModeObject: { isDarkMode },
@@ -21,6 +24,7 @@ function FavoriteTemplates() {
 }
 
 function RenderFavoriteTemplates() {
+  const t = useTranslations("common");
   const {
     allTemplatesObject: { allTemplates },
     isDarkModeObject: { isDarkMode },
@@ -48,7 +52,7 @@ function RenderFavoriteTemplates() {
       <div className="w-full h-64 flex justify-center items-center  mt-28 flex-col gap-5">
         <TbMoodEmpty className="text-[98px] text-opacity-60 text-slate-400" />
         <p className="text-sm text-slate-400">
-          There are no templates marked as favorites yet...
+          {t("there_are_no_templates_yet")}
         </p>
       </div>
     );
