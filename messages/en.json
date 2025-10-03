@@ -10,6 +10,16 @@
     "pt": "🇧🇷 Portuguese",
     "label": "Language"
   },
+  "sidebar": {
+    "mainMenu": "Main Menu",
+    "dashboard": "Dashboard",
+    "history": "History",
+    "templates": "Templates",
+    "favorites": "Favorite Templates",
+    "subscriptions": "Subscriptions",
+    "darkMode": "Dark Mode",
+    "logout": "Log Out"
+  },
   "Plans": {
     "pro": "Pro Plan",
     "free": "Free Plan",
@@ -149,15 +159,6 @@
     "php": "PHP",
     "typescript": "TypeScript",
     "go": "Go"
-  },
-  "sidebar": {
-    "dashboard": "Dashboard",
-    "history": "History",
-    "templates": "Templates",
-    "favorites": "Favorite Templates",
-    "subscriptions": "Subscriptions",
-    "darkMode": "Dark Mode",
-    "logout": "Log Out"
   },
   "dashboard": {
     "search": "Search",

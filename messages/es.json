@@ -10,6 +10,16 @@
     "pt": "🇧🇷 Portugués",
     "label": "Idioma"
   },
+  "sidebar": {
+    "mainMenu": "Menú Principal",
+    "dashboard": "Panel de control",
+    "history": "Historial",
+    "templates": "Plantillas",
+    "favorites": "Plantillas favoritas",
+    "subscriptions": "Suscripciones",
+    "darkMode": "Modo oscuro",
+    "logout": "Cerrar sesión"
+  },
   "Plans": {
     "pro": "Pro Plan",
     "free": "Free Plan",
@@ -148,15 +158,6 @@
     "php": "PHP",
     "typescript": "TypeScript",
     "go": "Go"
-  },
-  "sidebar": {
-    "dashboard": "Dashboard",
-    "history": "History",
-    "templates": "Templates",
-    "favorites": "Favorite Templates",
-    "subscriptions": "Subscriptions",
-    "darkMode": "Modo Oscuro",
-    "logout": "Log Out"
   },
   "dashboard": {
     "search": "Buscar",

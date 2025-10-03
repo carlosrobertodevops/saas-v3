@@ -19,6 +19,21 @@ function OthersSection() {
     isSideBarHiddenObject: { isSideBarHidden },
   } = useAppContext();
 
+  // Helper para traduzir rótulos vindos do contexto
+  const translateLabel = (label: string) => {
+    // Normaliza para comparar sem case sensitivity
+    const key = label.trim().toLowerCase();
+    switch (key) {
+      case "dark mode":
+        return t("darkMode");
+      case "log out":
+        return t("logout");
+      default:
+        // fallback: retorna o texto original se não houver mapeamento
+        return label;
+    }
+  };
+
   const { signOut } = useAuth();
 
   function updateDarkModeIcon(
@@ -27,7 +42,6 @@ function OthersSection() {
     if (isDarkModeOn) {
       return MdDarkMode;
     }
-
     return MdLightMode;
   }
 
@@ -62,10 +76,10 @@ function OthersSection() {
                 style={{ display: isSideBarHidden ? "none" : "block" }}
                 className="text-[14px]"
               >
-                {item.label}
+                {translateLabel(item.label)}
               </span>
             </div>
-            {item.label === t("darkMode") && <DarkModeToggle />}
+            {item.label === "Dark Mode" && <DarkModeToggle />}
           </li>
         ))}
       </ul>
