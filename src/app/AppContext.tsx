@@ -159,17 +159,12 @@ const defaultState = {
 const AppContext = createContext<AppType>(defaultState);
 
 // Define a provider component for the AppContext. This component
-//will wrap its children with the context provider.
+// will wrap its children with the context provider.
 export default function AppContextProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // // Locate
-  // const locale = getLocale();
-  // // Message
-  // const messages = getMessages();
-
   const t = useTranslations("sidebar");
   const [mainMenuItems, setMainMenuItems] = useState<MenuItem[]>([
     {
@@ -216,33 +211,34 @@ export default function AppContextProvider({
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [openPaymentWindow, setOpenPaymentWindow] = useState(false);
 
+  const s = useTranslations("stats");
   const [statsData, setStatsData] = useState<StatsDropDownItem[]>([
     {
       id: 1,
       icon: <LuWholeWord className="text-[18px] text-purple-600" />,
-      title: "Total words generated",
-      value: "1234",
+      title: s("total_words_generated"),
+      value: "0",
       isSelected: true,
     },
     {
       id: 2,
       icon: <IoDocumentsOutline className="text-[18px] text-purple-600" />,
-      title: "Total Doc. generated",
-      value: "123",
+      title: s("total_doc_generated"),
+      value: "0",
       isSelected: false,
     },
     {
       id: 3,
       icon: <IoMdTime className="text-[18px] text-purple-600" />,
-      title: "Total time saved",
-      value: "1 h and 23 min",
+      title: s("total_time_saved"),
+      value: "1 h 23 min",
       isSelected: false,
     },
     {
       id: 4,
       icon: <BiChart className="text-[18px] text-purple-600" />,
-      title: "Average Word per Doc.",
-      value: "234",
+      title: s("average_word"),
+      value: "0",
       isSelected: false,
     },
   ]);
@@ -250,19 +246,19 @@ export default function AppContextProvider({
   const [daysDropDown, setDaysDropDown] = useState<DaysDropDownItem[]>([
     {
       id: 1,
-      title: "Last 5 days",
+      title: s("last_5_days"),
       icon: <RiReplay5Line className="text-[18px] text-purple-600" />,
       isSelected: true,
     },
     {
       id: 2,
-      title: "Last 10 days ",
+      title: s("last_10_days"),
       icon: <RiReplay15Line className="text-[18px] text-purple-600" />,
       isSelected: false,
     },
     {
       id: 3,
-      title: "Last 15 days ",
+      title: s("last_15_days"),
       icon: <RiReplay30Line className="text-[18px] text-purple-600" />,
       isSelected: false,
     },

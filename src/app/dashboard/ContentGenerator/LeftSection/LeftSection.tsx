@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { IoSparklesSharp } from "react-icons/io5";
 import TemplatesHeader from "./TemplateHeader";
 import { useAppContext } from "@/src/app/AppContext";
@@ -45,6 +48,7 @@ export default function LeftSection() {
     setFakeUser,
   } = useAppContext();
 
+  const t = useTranslations("Home");
   const [isLoading, setIsLoading] = useState(false);
 
   function TemplateForm() {
@@ -158,14 +162,12 @@ export default function LeftSection() {
               setAllHistoryData([...allHistoryData, newHistory]);
               setFakeUser(updateFakeUser);
 
-              toast.success(
-                "The content has been generated and saved to history successfully",
-              );
+              toast.success(t("the_content_has_successfully"));
             }
           }
         } catch (error) {
           console.log(error);
-          toast.error("Something went wrong...");
+          toast.error(t("something_went_wrong"));
         } finally {
           setIsLoading(false);
         }

@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { useAppContext } from "@/src/app/AppContext";
 import PayPalWrapper from "@/src/app/PayPalWrapper";
 import React, { useEffect, useState } from "react";
@@ -16,9 +19,8 @@ function PlanCard({ title, price, features, buttonLabel, isPro }: PlanProps) {
   const {
     isDarkModeObject: { isDarkMode },
   } = useAppContext();
-
+  const t = useTranslations("Home");
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
   const [error, setError] = useState<string | null>(null);
   const {
     fakeUser,
@@ -49,9 +51,9 @@ function PlanCard({ title, price, features, buttonLabel, isPro }: PlanProps) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Network response was not ok");
       }
-
       const order = await response.json();
       console.log("Order created:", order);
+
       return order.id;
     } catch (error) {
       console.error("Error creating order:", error);
@@ -101,14 +103,14 @@ function PlanCard({ title, price, features, buttonLabel, isPro }: PlanProps) {
 
   return (
     <div
-      className={` rounded-lg shadow-lg 
+      className={` rounded-lg shadow-lg
         ${
           isDarkMode ? "bg-slate-800" : "border-slate-100 border bg-white"
         }  px-10 flex flex-col gap-3 relative  mt-6  pt-6 pb-10   w-[351px]`}
     >
       {/* plan and price */}
       <div className="mt-5">
-        <h3 className="text-xl  text-center">{title}</h3>
+        <h3 className="text-xl text-center">{t("titleProPlan")}</h3>
         <div className="text-[32px] font-semibold text-center mb-8">
           {price}
         </div>
@@ -150,6 +152,7 @@ function PlanCard({ title, price, features, buttonLabel, isPro }: PlanProps) {
 }
 
 function SubscriptionPlans() {
+  const t = useTranslations("Home");
   const {
     isDarkModeObject: { isDarkMode },
     mainMenuItemsObject: { setMainMenuItems },
@@ -160,13 +163,13 @@ function SubscriptionPlans() {
       prevItems.map((singleItem) => ({
         ...singleItem,
         isSelected: singleItem.label === "Dashboard" ? true : false,
-      }))
+      })),
     );
   }
 
   return (
     <div
-      className={`flex flex-col gap-6 items-center max-md:px-24 px-48 py-16 max-md:py-11   
+      className={`flex flex-col gap-6 items-center max-md:px-24 px-48 py-16 max-md:py-11
     p-8 relative   w-full ${
       isDarkMode ? "bg-slate-700 text-white" : "bg-slate-50"
     }`}
@@ -176,31 +179,28 @@ function SubscriptionPlans() {
         className="absolute right-9 top-9 text-[24px] text-slate-600 cursor-pointer"
       />
       <div className="flex flex-col items-center gap-7">
-        <h3 className="text-3xl font-bold">Upgrade Your Plan</h3>
+        <h3 className="text-3xl font-bold">{t("upgrade_plan")}</h3>
         <p
           className={`text-[13px] mt-1 leading-[22px] text-center text-slate-600 px-32 max-md:px-0 ${
             isDarkMode ? "text-slate-300" : "text-slate-700"
           } `}
         >
-          Generate high-quality content effortlessly with 14 AI-powered
-          templates. From blog posts to product descriptions, streamline your
-          content creation process and focus on what matters.
+          {t("generateHighQuality")}
         </p>
       </div>
 
       <div className="flex gap-4 max-md:flex-col flex-row">
         <PayPalWrapper>
           <PlanCard
-            title="Pro Plan"
+            title={t("titleProPlan")}
             price="$9,99"
             features={[
-              "Unlimited Access to All 14 Templates",
-              "Generate up to 100,000 words per month.",
-              "Priority Customer Support",
-              "Custom Content Tone",
-              "Priority Customer Support",
+              t("pro_plan_unlimited_access_to_14_templates"),
+              t("pro_plan_generate_up_to_100000"),
+              t("pro_plan_customContentTone"),
+              t("pro_plan_priorityCustomerSupport"),
             ]}
-            buttonLabel="Get Started"
+            buttonLabel={t("buttonLabelPro")}
             isPro={true}
           />
         </PayPalWrapper>

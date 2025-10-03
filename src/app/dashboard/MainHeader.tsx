@@ -77,7 +77,7 @@ const MainHeader = () => {
       }  border-slate-200 transition-all`}
     >
       {/* The name of the page */}
-      <div className="flex gap-2   items-center  ">
+      <div className="flex gap-2 items-center  ">
         <RenderMenuItemIcon />
         {windowWidth >= 732 && (
           <h1 className="text-[17px] font-semibold    ">
@@ -303,6 +303,8 @@ function SearchComponent() {
   }: {
     singleTemplate: SingleTemplate;
   }) {
+    const t = useTranslations("ContentGenerator");
+
     const {
       fakeUser,
       mainMenuItemsObject: { setMainMenuItems },
@@ -316,8 +318,6 @@ function SearchComponent() {
       }
       return sum;
     }, 0);
-
-    const t = useTranslations("ContentGenerator");
 
     function adjustOpacity() {
       if (!fakeUser.isPro) {
@@ -334,7 +334,7 @@ function SearchComponent() {
         if (singleTemplate.isForPro) {
           return (
             <GiRoundStar
-              className="text-purple-600   p-[2px] flex items-center justify-center rounded-full
+              className="text-purple-600 p-[2px] flex items-center justify-center rounded-full
      absolute right-[-25px] top-[5px] text-[13px]  "
             />
           );

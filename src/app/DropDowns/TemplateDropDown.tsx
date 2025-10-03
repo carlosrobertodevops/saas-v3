@@ -56,7 +56,6 @@ function TemplateDropDown({
           if (getTheSelectedTemplateIndex === index) {
             return { ...template, isSelected: true };
           }
-
           return { ...template, isSelected: false };
         },
       );
@@ -84,13 +83,12 @@ function TemplateDropDown({
   return (
     <div
       ref={dropDownRef}
-      className={`bg-white     absolute p-3 top-20
-          z-[90] border w-[310px]
+      className={`bg-white absolute p-3 top-20 z-[90] border w-[310px]
       border-slate-50 select-none shadow-md rounded-lg flex
       flex-col gap-2`}
     >
       {/* Search Bar */}
-      <div className="flex  items-center bg-slate-50 rounded-md px-3 py-[9px] w-full">
+      <div className="flex items-center bg-slate-50 rounded-md px-3 py-[9px] w-full">
         {/* icon */}
         <BiSearch className="text-slate-400 text-[18px]" />
         <input

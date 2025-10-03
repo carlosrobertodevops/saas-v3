@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import React, { useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -24,6 +27,7 @@ const formatResponse = (response: string) => {
 };
 
 export default function RightSection() {
+  const t = useTranslations("ContentGenerator");
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
@@ -102,7 +106,7 @@ export default function RightSection() {
           <div className="flex flex-col">
             <div className="text-[18px] text-slate-600 mt-[2px] items-center flex gap-1 font-semibold">
               <span className="hover:text-purple-600 cursor-pointer">
-                Output
+                {t("RightSection.output")}
               </span>
             </div>
           </div>
@@ -110,7 +114,7 @@ export default function RightSection() {
       </div>
 
       <div className="text-slate-400 mt-12 text-[13px]">
-        Below is the generated content. Feel free to edit or refine it further.
+        {t("RightSection.hint")}
       </div>
 
       <div className="mt-3 flex flex-col">
@@ -121,7 +125,7 @@ export default function RightSection() {
         />
         <div className="flex justify-end mt-4">
           <span className="text-[12px] text-slate-400 text-end">
-            {countWords(contentGenerated)} Total Words
+            {countWords(contentGenerated)} {t("RightSection.totalWords")}
           </span>
         </div>
       </div>

@@ -23,10 +23,10 @@ function ContentGeneratorForm() {
         w-[95%] rounded-lg flex gap-2 shadow-lg  ${
           openContentGeneratorForm ? "fixed" : "hidden"
         } ${
-        windowWidth <= 836
-          ? "flex-col h-[1210px] absolute"
-          : "flex-row h-[90vh]"
-      }`}
+          windowWidth <= 836
+            ? "flex-col h-[1210px] absolute"
+            : "flex-row h-[90vh]"
+        }`}
     >
       <LeftSection />
       <RightSection />

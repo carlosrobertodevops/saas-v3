@@ -23,7 +23,7 @@ function SideBar() {
   let hideSideBarClass;
   const menuRef = useRef<HTMLDivElement>(null);
 
-  //If the window size is less than 995
+  // If the window size is less than 995
   if (windowWidth <= 995) {
     //if the use click on the menu bar icon to stretch the side bar
     if (stretchSideBar) {
@@ -36,16 +36,16 @@ function SideBar() {
       hideSideBarClass = "hidden";
     }
   } else {
-    // This block, will handle the case, when the size window is bigger than 995
-    //we want the side bar to go back its previous state when it was hidden,
-    //and I'm using the local storage for that
+    // Este bloco tratará do caso em que o tamanho da janela for maior que 995
+    // Queremos que a barra lateral retorne ao seu estado anterior, quando estava oculta,
+    // E estou usando o armazenamento local para isso
     const getIsSideBarHidden = localStorage.getItem("isSideBarHidden");
     if (getIsSideBarHidden !== null) {
       setIsSideBarHidden(JSON.parse(getIsSideBarHidden));
     }
   }
 
-  //This useEffect handle the logic of closing the side bar when the user clicks outside of it
+  // Este useEffect manipula a lógica de fechar a barra lateral quando o usuário clica fora dela
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {

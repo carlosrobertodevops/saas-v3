@@ -1,3 +1,6 @@
+// Traduções
+import { useTranslations } from "next-intl";
+
 import { useAppContext } from "@/src/app/AppContext";
 import { FaCheck } from "react-icons/fa";
 
@@ -7,6 +10,7 @@ export default function PaymentWindow() {
     openPaymentWindowObject: { openPaymentWindow, setOpenPaymentWindow },
     mainMenuItemsObject: { setMainMenuItems },
   } = useAppContext();
+  const t = useTranslations("Home");
   const darkModeClass = `${
     isDarkMode ? "bg-slate-800 text-white" : "bg-white"
   }`;
@@ -27,7 +31,7 @@ export default function PaymentWindow() {
         <p
           className={`  mb-4 text-[13px] w-full text-center mt-7 text-lg font-semibold  `}
         >
-          Payment Successful
+          {t("PaymentSuccessful")}
         </p>
 
         <div className="flex w-full items-center justify-center  gap-2 mt-11 text-[13px] ">
@@ -40,14 +44,14 @@ export default function PaymentWindow() {
                   }
 
                   return { ...menu, isSelected: false };
-                })
+                }),
               );
 
               setOpenPaymentWindow(false);
             }}
             className="px-14 py-2 bg-purple-600 rounded-lg text-white "
           >
-            Go Back To Dashboard
+            {t("goBackToDashboard")}
           </button>
         </div>
       </div>

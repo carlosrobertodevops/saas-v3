@@ -1,4 +1,5 @@
 "use client";
+
 // Tradução
 import { useTranslations } from "next-intl";
 
@@ -12,7 +13,6 @@ import { useAuth } from "@clerk/nextjs";
 // Outras sessões
 function OthersSection() {
   const t = useTranslations("sidebar");
-
   const {
     secondMenuItemsObject: { secondMenuItems, setSecondMenuItems },
     isDarkModeObject: { isDarkMode, setIsDarkMode },
@@ -65,7 +65,6 @@ function OthersSection() {
                 {item.label}
               </span>
             </div>
-
             {item.label === t("darkMode") && <DarkModeToggle />}
           </li>
         ))}
@@ -73,6 +72,7 @@ function OthersSection() {
     </div>
   );
 
+  // DarkModeToggle Component
   function DarkModeToggle() {
     function updateDarkModeState(option: "left" | "right") {
       if (option === "right") {

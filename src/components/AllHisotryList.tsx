@@ -103,7 +103,7 @@ function AllHistoryList() {
     );
   }
 
-  const singleItemsContainer = `flex   flex-col ${
+  const singleItemsContainer = `flex flex-col ${
     isDarkMode ? "bg-slate-800" : "bg-white"
   }`;
 

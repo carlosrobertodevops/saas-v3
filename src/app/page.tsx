@@ -81,7 +81,7 @@ function Buttons() {
     // Optionally render a loading state
     return (
       <div className="flex gap-2 max-sm:flex-col max-sm:w-full max-sm:mt-8">
-        <button className="p-2 bg-gray-200 rounded-md"> {l("loading")}</button>
+        <button className="p-2 bg-gray-200 rounded-md">{l("loading")}</button>
       </div>
     );
   }
@@ -193,9 +193,7 @@ function KeyFeatures() {
 }
 
 function PricingSection() {
-  // Tradução
   const t = useTranslations("Home");
-
   return (
     <div className="mx-8  text-center p-8 py-14">
       <h2 className="text-2xl font-bold mb-6">{t("pricingPlans")}</h2>
