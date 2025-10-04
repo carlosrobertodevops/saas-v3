@@ -1,5 +1,147 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Estructure
 
+```
+./saas-v3/
+├─ .vincent/
+│  └─ mcp.json
+├─ .vscode/
+│  └─ settings.json
+├─ messages/
+│  ├─ en.json
+│  ├─ es.json
+│  └─ pt.json
+├─ public/
+│  └─ ai-verse-dashboard.png
+├─ src/
+│  ├─ app/
+│  │  ├─ api/
+│  │  │  ├─ create-order/
+│  │  │  │  └─ route.ts
+│  │  │  ├─ generate/
+│  │  │  │  └─ route.ts
+│  │  │  ├─ histories/
+│  │  │  │  └─ route.ts
+│  │  │  ├─ users/
+│  │  │  │  └─ route.ts
+│  │  │  └─ webhooks/
+│  │  │     └─ route.ts
+│  │  ├─ dashboard/
+│  │  │  ├─ ContentGenerator/
+│  │  │  │  ├─ LeftSection/
+│  │  │  │  │  ├─ Audience.tsx
+│  │  │  │  │  ├─ LeftSection.tsx
+│  │  │  │  │  ├─ LeftSectionContext.tsx
+│  │  │  │  │  ├─ MainTopic.tsx
+│  │  │  │  │  ├─ TemplateHeader.tsx
+│  │  │  │  │  ├─ ToneOrStyle.tsx
+│  │  │  │  │  ├─ leftSectionFunctions.tsx
+│  │  │  │  │  ├─ prompts.ts
+│  │  │  │  │  └─ renderFormFields.tsx
+│  │  │  │  ├─ RightSection/
+│  │  │  │  │  └─ RightSection.tsx
+│  │  │  │  └─ ContentGenerator.tsx
+│  │  │  ├─ FavoriteTemplates/
+│  │  │  │  └─ FavoriteTemplates.tsx
+│  │  │  ├─ Hisotry/
+│  │  │  │  └─ AllHistory.tsx
+│  │  │  ├─ MainArea/
+│  │  │  │  └─ page.tsx
+│  │  │  ├─ SideBar/
+│  │  │  │  └─ SideBar.tsx
+│  │  │  ├─ Templates/
+│  │  │  │  └─ AllTemplatesPage.tsx.tsx
+│  │  │  ├─ subscription/
+│  │  │  │  └─ SubscriptionPage.tsx
+│  │  │  ├─ MainHeader.tsx
+│  │  │  └─ page.tsx
+│  │  ├─ DropDowns/
+│  │  │  ├─ DaysDropDown.tsx
+│  │  │  ├─ FilterByTemplatesDropDown.tsx
+│  │  │  ├─ StatsDropDown.tsx
+│  │  │  └─ TemplateDropDown.tsx
+│  │  ├─ Hooks/
+│  │  │  └─ useClickOutside.tsx
+│  │  ├─ fonts/
+│  │  │  ├─ GeistMonoVF.woff
+│  │  │  └─ GeistVF.woff
+│  │  ├─ sign-in/
+│  │  │  └─ [[...sign-in]]/
+│  │  │     └─ page.tsx
+│  │  ├─ sign-up/
+│  │  │  └─ [[...sign-up]]/
+│  │  │     └─ page.tsx
+│  │  ├─ AppContext.tsx
+│  │  ├─ PayPalWrapper.tsx
+│  │  ├─ custom-quil.css
+│  │  ├─ favicon.ico
+│  │  ├─ globals.css
+│  │  ├─ layout.tsx
+│  │  ├─ middleware.ts
+│  │  ├─ page.tsx
+│  │  └─ PayPalWrapper.tsx
+│  ├─ components/
+│  │  ├─ AllHisotryList.tsx
+│  │  ├─ Chart.tsx
+│  │  ├─ DashStats.tsx
+│  │  ├─ HistorySubHeader.tsx
+│  │  ├─ Keywords.tsx
+│  │  ├─ LanguageSelector.tsx
+│  │  ├─ LocaleSwitcher.tsx
+│  │  ├─ LocaleSwitcherSelect.tsx
+│  │  ├─ Logo.tsx
+│  │  ├─ MainSection.tsx
+│  │  ├─ NavLink.tsx
+│  │  ├─ OthersSection.tsx
+│  │  ├─ RemainingWords.tsx
+│  │  ├─ SingleHistoryItem.tsx
+│  │  ├─ TemplateSingleCard.tsx
+│  │  ├─ TemplatesList.tsx
+│  │  └─ TemplatesSubHeader.tsx
+│  ├─ LocalData/
+│  │  ├─ mainData.ts
+│  │  ├─ templateFilteringItems.tsx
+│  │  └─ templates.tsx
+│  ├─ Windows/
+│  │  ├─ DeleteConfirmationWindow.tsx
+│  │  └─ PayementWindow.tsx
+│  ├─ i18n/
+│  │  ├─ config.ts
+│  │  └─ request.ts
+│  ├─ lib/
+│  │  └─ connect.ts
+│  ├─ models/
+│  │  ├─ HistorySchema.ts
+│  │  └─ UserSchema.ts
+│  ├─ services/
+│  │  ├─ locale.ts
+│  │  └─ session.ts
+│  ├─ types/
+│  │  └─AppType.ts
+│  ├─ Windows/
+│  │  ├─ DeleteConfirmationWindow.tsx
+│  │  └─ PaymentWindow.tsx
+│  └─
+├─ .dockerignore
+├─ .env
+├─ .env.exemplo
+├─ .env.local
+├─ .gitignore
+├─ docker-compose.coolify.yaml
+├─ docker-compose.local.yaml
+├─ eslint.config.mts
+├─ next-env.d.ts
+├─ next.config.mjs
+├─ next.config.ts
+├─ package.json
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
+├─ postcss.config.mjs
+├─ Read This Before you Use The Source Code.pdf
+├─ README.md
+├─ tailwind.config.ts
+└─ tsconfig.json
+```
 ## Getting Started
 
 First, run the development server:
@@ -8,7 +150,7 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
+# or (base of code)
 pnpm dev
 # or
 bun dev
