@@ -28,49 +28,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 │  │  │     └─ route.ts
 │  │  ├─ dashboard/
 │  │  │  ├─ ContentGenerator/
-│  │  │  │  ├─ LeftSection/
-│  │  │  │  │  ├─ Audience.tsx
-│  │  │  │  │  ├─ LeftSection.tsx
-│  │  │  │  │  ├─ LeftSectionContext.tsx
-│  │  │  │  │  ├─ MainTopic.tsx
-│  │  │  │  │  ├─ TemplateHeader.tsx
-│  │  │  │  │  ├─ ToneOrStyle.tsx
-│  │  │  │  │  ├─ leftSectionFunctions.tsx
-│  │  │  │  │  ├─ prompts.ts
-│  │  │  │  │  └─ renderFormFields.tsx
-│  │  │  │  ├─ RightSection/
-│  │  │  │  │  └─ RightSection.tsx
-│  │  │  │  └─ ContentGenerator.tsx
 │  │  │  ├─ FavoriteTemplates/
-│  │  │  │  └─ FavoriteTemplates.tsx
 │  │  │  ├─ Hisotry/
-│  │  │  │  └─ AllHistory.tsx
 │  │  │  ├─ MainArea/
-│  │  │  │  └─ page.tsx
 │  │  │  ├─ SideBar/
-│  │  │  │  └─ SideBar.tsx
 │  │  │  ├─ Templates/
-│  │  │  │  └─ AllTemplatesPage.tsx.tsx
 │  │  │  ├─ subscription/
-│  │  │  │  └─ SubscriptionPage.tsx
 │  │  │  ├─ MainHeader.tsx
 │  │  │  └─ page.tsx
 │  │  ├─ DropDowns/
-│  │  │  ├─ DaysDropDown.tsx
-│  │  │  ├─ FilterByTemplatesDropDown.tsx
-│  │  │  ├─ StatsDropDown.tsx
-│  │  │  └─ TemplateDropDown.tsx
 │  │  ├─ Hooks/
-│  │  │  └─ useClickOutside.tsx
 │  │  ├─ fonts/
-│  │  │  ├─ GeistMonoVF.woff
-│  │  │  └─ GeistVF.woff
 │  │  ├─ sign-in/
-│  │  │  └─ [[...sign-in]]/
-│  │  │     └─ page.tsx
 │  │  ├─ sign-up/
-│  │  │  └─ [[...sign-up]]/
-│  │  │     └─ page.tsx
 │  │  ├─ AppContext.tsx
 │  │  ├─ PayPalWrapper.tsx
 │  │  ├─ custom-quil.css
@@ -99,29 +69,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 │  │  ├─ TemplatesList.tsx
 │  │  └─ TemplatesSubHeader.tsx
 │  ├─ LocalData/
-│  │  ├─ mainData.ts
-│  │  ├─ templateFilteringItems.tsx
-│  │  └─ templates.tsx
 │  ├─ Windows/
-│  │  ├─ DeleteConfirmationWindow.tsx
-│  │  └─ PayementWindow.tsx
 │  ├─ i18n/
-│  │  ├─ config.ts
-│  │  └─ request.ts
 │  ├─ lib/
-│  │  └─ connect.ts
 │  ├─ models/
-│  │  ├─ HistorySchema.ts
-│  │  └─ UserSchema.ts
 │  ├─ services/
-│  │  ├─ locale.ts
-│  │  └─ session.ts
 │  ├─ types/
-│  │  └─AppType.ts
-│  ├─ Windows/
-│  │  ├─ DeleteConfirmationWindow.tsx
-│  │  └─ PaymentWindow.tsx
-│  └─
+│  └─ Windows/
 ├─ .dockerignore
 ├─ .env
 ├─ .env.exemplo
