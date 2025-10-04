@@ -10,23 +10,25 @@ services:
         NODE_VERSION: 22-alpine
         PNPM_VERSION: 10.17.1
     working_dir: /app
-    volumes:
-      - ./:/app # seu código
-      - /app/node_modules # volume anônimo p/ não poluir o host
-      - next-cache:/app/.next # cache do Next
-      - pnpm-store:/root/.local/share/pnpm/store # cache do pnpm
+    env_file:
+      - ./.env.local
     environment:
       NODE_ENV: development
-      NEXT_TELEMETRY_DISABLED: "1"
-      WATCHPACK_POLLING: "true" # útil no Docker Desktop/WSL
+      HOSTNAME: 0.0.0.0
       PORT: "3000"
-      HOSTNAME: "0.0.0.0"
-    command: pnpm dev # (pode omitir; já é o CMD do stage dev)
+      # Telemetria
+      ENABLE_TELEMETRY: "${ENABLE_TELEMETRY:-true}"
+      OTEL_SERVICE_NAME: "${OTEL_SERVICE_NAME:-saas-v3}"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4318"
     ports:
       - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - next-cache:/app/.next
     depends_on:
       - mongo
-    restart: unless-stopped
+      - otel-collector
 
   mongo:
     image: mongo:7
@@ -39,7 +41,141 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.101.0
+    command: ["--config=/etc/otel/otel-collector.yaml"]
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otel/otel-collector.yaml:ro
+    ports:
+      - "4318:4318" # OTLP/HTTP
+      - "9464:9464" # Prometheus exporter endpoint (scrape)
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./observability/alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
+      - prom-data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - otel-collector
+      - alertmanager
+
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
+    volumes:
+      - ./observability/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - "9093:9093"
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:v1.8.2
+    ports:
+      - "9100:9100"
+    pid: "host"
+    restart: unless-stopped
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rshared,rslave"
+
+  # --- Opcional: Datadog Agent ---
+  datadog:
+    image: gcr.io/datadoghq/agent:7
+    environment:
+      DD_API_KEY: ${DD_API_KEY:-}
+      DD_SITE: ${DD_SITE:-datadoghq.com}
+      DD_ENV: ${DD_ENV:-local}
+      DD_SERVICE: ${DD_SERVICE:-saas-v3}
+      DD_LOGS_ENABLED: "true"
+      DD_APM_ENABLED: "true"
+      DD_DOGSTATSD_NON_LOCAL_TRAFFIC: "true"
+      DD_APM_RECEIVER_SOCKET: ${DD_APM_RECEIVER_SOCKET:-/var/run/datadog/apm.socket}
+      DD_DOGSTATSD_SOCKET: ${DD_DOGSTATSD_SOCKET:-/var/run/datadog/dsd.socket}
+    ports:
+      - "8126:8126" # APM
+      - "8125:8125/udp" # DogStatsD
+    depends_on:
+      - app
+    profiles: ["datadog"]
+
 volumes:
   mongo-data:
   next-cache:
-  pnpm-store:
+  prom-data:
+  grafana-data:
+# name: generator-saas-local
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#       target: dev
+#       args:
+#         NODE_VERSION: 22-alpine
+#         PNPM_VERSION: 10.17.1
+#     working_dir: /app
+#     volumes:
+#       - ./:/app # seu código
+#       - /app/node_modules # volume anônimo p/ não poluir o host
+#       - next-cache:/app/.next # cache do Next
+#       - pnpm-store:/root/.local/share/pnpm/store # cache do pnpm
+#     environment:
+#       NODE_ENV: development
+#       NEXT_TELEMETRY_DISABLED: "1"
+#       WATCHPACK_POLLING: "true" # útil no Docker Desktop/WSL
+#       PORT: "3000"
+#       HOSTNAME: "0.0.0.0"
+#     command: pnpm dev # (pode omitir; já é o CMD do stage dev)
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - mongo
+#     restart: unless-stopped
+
+#   mongo:
+#     image: mongo:7
+#     restart: unless-stopped
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+#       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-root}
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+
+# volumes:
+#   mongo-data:
+#   next-cache:
+#   pnpm-store:

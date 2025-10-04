@@ -5,52 +5,25 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: runner # garante que o Coolify use a imagem de runtime
+      target: runner
       args:
         NODE_VERSION: 22-alpine
         PNPM_VERSION: 10.17.1
     restart: unless-stopped
+    env_file:
+      - ./.env.local
     environment:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
-      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
-
-      # Clerk (definir em Secrets no Coolify)
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:?set in Coolify}
-      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:?set in Coolify}
-      NEXT_PUBLIC_CLERK_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_SIGN_IN_URL:-/sign-in}
-      NEXT_PUBLIC_CLERK_SIGN_UP_URL: ${NEXT_PUBLIC_CLERK_SIGN_UP_URL:-/sign-up}
-      NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL:-/dashboard}
-      NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL:-/}
-
-      # DB (ajuste para Atlas se preferir)
-      MONGODB_URL: ${MONGODB_URL:-mongodb://root:root@mongo:27017/ui-shelf?authSource=admin}
-
-      # (opcional) evitar OOM em builds grandes
-      # NODE_OPTIONS: --max-old-space-size=1024
-
+      ENABLE_TELEMETRY: "${ENABLE_TELEMETRY:-true}"
+      OTEL_SERVICE_NAME: "${OTEL_SERVICE_NAME:-saas-v3}"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4318"
+    ports:
+      - "3000:3000"
     depends_on:
-      mongo:
-        condition: service_healthy
-
-    # No Coolify, normalmente NÃO é preciso mapear portas.
-    # Ele publica automaticamente a porta interna do serviço.
-    # Se quiser expor manualmente, descomente:
-    # ports:
-    #   - "3000:3000"
-
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "node",
-          "-e",
-          "require('http').get('http://localhost:3000', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))",
-        ]
-      interval: 15s
-      timeout: 5s
-      retries: 5
+      - mongo
+      - otel-collector
 
   mongo:
     image: mongo:7
@@ -74,5 +47,174 @@ services:
       timeout: 5s
       retries: 10
 
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.101.0
+    command: ["--config=/etc/otel/otel-collector.yaml"]
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otel/otel-collector.yaml:ro
+    ports:
+      - "4318:4318"
+      - "9464:9464"
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./observability/alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
+      - prom-data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - otel-collector
+      - alertmanager
+
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
+    volumes:
+      - ./observability/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - "9093:9093"
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    profiles: ["infra"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:v1.8.2
+    profiles: ["infra"]
+    ports:
+      - "9100:9100"
+    pid: "host"
+    restart: unless-stopped
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rshared,rslave"
+
+  datadog:
+    image: gcr.io/datadoghq/agent:7
+    profiles: ["datadog"]
+    environment:
+      DD_API_KEY: ${DD_API_KEY:-}
+      DD_SITE: ${DD_SITE:-datadoghq.com}
+      DD_ENV: ${DD_ENV:-local}
+      DD_SERVICE: ${DD_SERVICE:-saas-v3}
+      DD_LOGS_ENABLED: "true"
+      DD_APM_ENABLED: "true"
+      DD_DOGSTATSD_NON_LOCAL_TRAFFIC: "true"
+      DD_APM_RECEIVER_SOCKET: ${DD_APM_RECEIVER_SOCKET:-/var/run/datadog/apm.socket}
+      DD_DOGSTATSD_SOCKET: ${DD_DOGSTATSD_SOCKET:-/var/run/datadog/dsd.socket}
+    ports:
+      - "8126:8126"
+      - "8125:8125/udp"
+    depends_on:
+      - app
+
 volumes:
   mongo-data:
+  prom-data:
+  grafana-data:
+# name: generator-saas-coolify
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#       target: runner # garante que o Coolify use a imagem de runtime
+#       args:
+#         NODE_VERSION: 22-alpine
+#         PNPM_VERSION: 10.17.1
+#     restart: unless-stopped
+#     environment:
+#       NODE_ENV: production
+#       PORT: "3000"
+#       HOSTNAME: "0.0.0.0"
+#       NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
+
+#       # Clerk (definir em Secrets no Coolify)
+#       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:?set in Coolify}
+#       CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:?set in Coolify}
+#       NEXT_PUBLIC_CLERK_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_SIGN_IN_URL:-/sign-in}
+#       NEXT_PUBLIC_CLERK_SIGN_UP_URL: ${NEXT_PUBLIC_CLERK_SIGN_UP_URL:-/sign-up}
+#       NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL:-/dashboard}
+#       NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: ${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL:-/}
+
+#       # DB (ajuste para Atlas se preferir)
+#       MONGODB_URL: ${MONGODB_URL:-mongodb://root:root@mongo:27017/ui-shelf?authSource=admin}
+
+#       # (opcional) evitar OOM em builds grandes
+#       # NODE_OPTIONS: --max-old-space-size=1024
+
+#     depends_on:
+#       mongo:
+#         condition: service_healthy
+
+#     # No Coolify, normalmente NÃO é preciso mapear portas.
+#     # Ele publica automaticamente a porta interna do serviço.
+#     # Se quiser expor manualmente, descomente:
+#     # ports:
+#     #   - "3000:3000"
+
+#     healthcheck:
+#       test:
+#         [
+#           "CMD",
+#           "node",
+#           "-e",
+#           "require('http').get('http://localhost:3000', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))",
+#         ]
+#       interval: 15s
+#       timeout: 5s
+#       retries: 5
+
+#   mongo:
+#     image: mongo:7
+#     restart: unless-stopped
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+#       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-root}
+#     volumes:
+#       - mongo-data:/data/db
+#     healthcheck:
+#       test:
+#         [
+#           "CMD",
+#           "mongosh",
+#           "--quiet",
+#           "mongodb://$${MONGO_INITDB_ROOT_USERNAME}:$${MONGO_INITDB_ROOT_PASSWORD}@localhost:27017/admin?authSource=admin",
+#           "--eval",
+#           "db.runCommand({ ping: 1 })",
+#         ]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 10
+
+# volumes:
+#   mongo-data:
