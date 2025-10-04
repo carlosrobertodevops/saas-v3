@@ -99,7 +99,8 @@
     "the_content_has_successfully": "O conteúdo foi gerado e salvo no histórico com sucesso",
     "upgrade_plan": "Atualize seu plano",
     "something_went_wrong": "Algo deu errado...",
-    "goBackToDashboard": "Voltar para o painel"
+    "goBackToDashboard": "Voltar para o painel",
+    "PaymentSuccessful": "Pagamento concluído"
   },
   "Common": {
     "loading": "Carregando...",

@@ -99,7 +99,8 @@
     "the_content_has_successfully": "El contenido se ha generado y guardado correctamente en el historial",
     "upgrade_plan": "Actualiza tu plan",
     "something_went_wrong": "Algo deu errado...",
-    "goBackToDashboard": "Volver al panel"
+    "goBackToDashboard": "Volver al panel",
+    "PaymentSuccessful": "Pago realizado"
   },
   "Common": {
     "loading": "Cargando...",
