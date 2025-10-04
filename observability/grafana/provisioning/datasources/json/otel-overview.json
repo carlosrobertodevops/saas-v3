@@ -1,0 +1,16 @@
+{
+  "annotations": { "list": [] },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Alvos (up)",
+      "targets": [
+        { "expr": "up", "legendFormat": "{{instance}}", "refId": "A" }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1,
+  "title": "OTel / Infra Overview",
+  "time": { "from": "now-6h", "to": "now" }
+}
